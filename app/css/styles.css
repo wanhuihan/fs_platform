@@ -1,0 +1,139 @@
+/*
+A custom Bootstrap 3.2 'Google Plus style' theme
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+body, html {
+  height: 100%; }
+
+.dashboard {
+  padding: 15px auto;
+  height: 100%; }
+  .dashboard .table td {
+    padding: 15px 8px; }
+  .dashboard .table tr:first-child {
+    background: inherit; }
+  .dashboard .table tr td:first-child {
+    text-align: center; }
+  .dashboard .table tr td:last-child {
+    vertical-align: middle; }
+  .dashboard .table tr th:first-child {
+    text-align: center; }
+  .dashboard nav.navigation {
+    text-align: right; }
+  .dashboard .quickSearch {
+    margin-bottom: 15px; }
+    .dashboard .quickSearch input {
+      border: 1px solid #D9D9D9;
+      height: 30px; }
+    .dashboard .quickSearch select {
+      border: 1px solid #D9D9D9;
+      width: 100px;
+      height: 30px; }
+    .dashboard .quickSearch label {
+      padding: 0 15px; }
+      .dashboard .quickSearch label:first-child {
+        padding-left: 0; }
+    .dashboard .quickSearch button {
+      float: right; }
+  .dashboard .row {
+    height: 100%; }
+
+.col-md-10 .navbar-collapse .nav a {
+  color: #eee;
+  box-sizing: border-box;
+  height: 50px; }
+  .col-md-10 .navbar-collapse .nav a:hover {
+    background: #4f4f4f;
+    color: #fff;
+    cursor: pointer; }
+
+.col-md-10 .navbar-collapse .nav li {
+  box-sizing: border-box; }
+  .col-md-10 .navbar-collapse .nav li.active {
+    background: #4f4f4f; }
+
+.navbar {
+  background: #242527;
+  margin-bottom: 0;
+  border: 0; }
+  .navbar nav .nav a {
+    padding: 0 15px;
+    line-height: 50px; }
+  .navbar .logo {
+    margin: 0;
+    padding: 0;
+    line-height: 50px;
+    font-family: Microsoft Yahei; }
+
+.sideBar {
+  background: #35363a;
+  padding: 50px 0 0;
+  height: 100%;
+  width: 215px;
+  position: relative;
+  z-index: 1; }
+  .sideBar h2 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0; }
+  .sideBar .sideBarTab {
+    display: none; }
+    .sideBar .sideBarTab .panel {
+      border: 0;
+      margin: 0;
+      background: none; }
+      .sideBar .sideBarTab .panel .panel-heading {
+        background: none;
+        border-bottom: none;
+        padding: 0; }
+        .sideBar .sideBarTab .panel .panel-heading:hover {
+          background: #27272B; }
+      .sideBar .sideBarTab .panel .panel-body {
+        padding: 5px 0; }
+        .sideBar .sideBarTab .panel .panel-body ul {
+          padding: 0;
+          margin: 0; }
+          .sideBar .sideBarTab .panel .panel-body ul a {
+            color: #cecfd3;
+            padding: 5px 5px 5px 35px;
+            display: block; }
+  .sideBar h4 a {
+    display: block;
+    color: #cecfd3;
+    font-size: 14px;
+    padding: 10px 15px; }
+  .sideBar h4.panel-title a[aria-expanded=true] {
+    background: #27272B; }
+
+.main {
+  height: 100%;
+  width: 100%;
+  padding-left: 215px;
+  padding-top: 50px;
+  box-sizing: border-box;
+  float: none; }
+  .main .breadcrumb {
+    font-size: 12px; }
+  .main > div {
+    padding: 15px; }
+
+.addProjectPop.ngdialog-theme-plain .ngdialog-content {
+  width: 600px; }
+
+.addProjectPop #addProForm {
+  margin: 15px; }
+
+.backBtn {
+  margin-bottom: 15px; }
+
+.grayLine {
+  border-bottom: 1px solid #414247; }
+
+a:hover {
+  text-decoration: none; }

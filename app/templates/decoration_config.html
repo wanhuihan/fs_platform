@@ -1,0 +1,69 @@
+    <div class="col-md-12" class="row" ng-controller="decoration_config" >
+        <ol class="breadcrumb">
+          <li><a href="#">装修管理</a></li>
+          <li><a href="#">装修配置</a></li>
+          <li class="active">工序配置</li>
+        </ol>
+        {{errorMsg}}
+        <div class="container-fluid" ng-show="errMsgShow" >
+            <form class="quickSearch">
+              <fieldset>
+                <label>工序名称</label>
+                <input type="text" placeholder="" ng-model="project_name">
+                <label>工种</label>
+                <select class="" ng-model="construction_trades">
+                    <option value="">所有</option>
+                    <option value="3">水工</option>
+                    <option value="4">电工</option>
+                    <option value="5">瓦工</option>
+                    <option value="6">木工</option>
+                    <option value="7">油工</option>
+                    <option value="8">壮工</option>
+                    <option value="9">空调工</option>
+
+                </select>
+                 <button class="btn btn-primary addPro" ng-click="showAddProcessPopup()">添加工序</button>
+                 <button class="btn fa fa-mail-reply backBtn">返回</button>
+              </fieldset>
+
+            </form>
+            
+            <table width="100%" class="table table-hover table-striped">
+                <tr>
+                    <th width="5%">序号</th>
+                    <th width="25%">工序名称</th>
+                    <th width="5%">施工工种</th>
+                    <th width="15%">验收依据</th>
+                    <th width="15%">施工内容简述</th>
+                    <th width="5%">单位</th>
+                    <th width="20%">工程量计算规则</th>
+                    <th width="10%">操作</th>
+                </tr>
+                <tr ng-repeat="item in data | filter:{project_name} | filter:{construction_trades}">
+                    <td>{{item.serial_number}}</td>
+                    <td>{{item.project_name}}</td>
+                    <td>
+                    {{item.construction_trades_value}}
+                    </td>
+                    <td>{{item.acceptance_basis}}</td>
+                    <td>{{item.construction_description}}</td>
+                    <td>{{item.unit}}</td>
+                    <td>{{item.engineering_calculation_rules}}</td>
+                    <td>
+                        <div class="btn-group">
+
+                            <a href="javscript:void(0)" ng-click="showProcessDetailsPopup(this)"><i class="fa fa-eye" aria-hidden="true"></i>查看</a>
+                            <a ng-click = getDetails(item.process_configuration_id) >查看</a>
+                            <a href="index.html#/decorationconfigdetails/?processId={{item.process_configuration_id}}">test</a>
+                            <a ng-click="test()"><i class="fa fa-edit" aria-hidden="true"></i>编辑</a>
+                            <a href=""><i class="fa fa-times-circle" aria-hidden="true"></i>删除</a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>                  
+        </div>
+    </div>
+
+
+

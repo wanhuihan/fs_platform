@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/layout/table.css">
+	<link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+</head>
+<body>
+	
+	<form>
+		<fieldset class="headInfo">
+			<h2 class="formTit">暗龙骨吊顶工程检验批质量验收记录</h2>
+			<div>
+				<label for="proName">单位(子单位)工程名称</label>
+				<input type="text" name="" placeholder="请填写....">
+			</div>
+			<div>
+				<label for="proName">分布(子单位)工程名称</label>
+				<input type="text" name="">
+			</div>
+			<div  class="shortTxt">
+				<label for="proName ">验收部位</label>
+				<input type="text" name="">
+			</div>
+			<div class="shortTxt">
+				<label for="proName">施工单位</label>
+				<input type="text" name="">
+			</div>
+			<div  class="shortTxt">			
+				<label for="proName ">项目经理</label>
+				<input type="text" name="">
+			</div>
+			<div class="shortTxt">
+				<label for="proName " >分包单位</label>
+				<input type="text" name="">				
+			</div>
+			<div class="shortTxt">
+			<label for="proName ">分包项目经理</label>
+			<input type="text" name="">				
+			</div>
+			<div>
+				<label for="proName ">施工执行标准及编号</label>
+				<input type="text" name="">				
+			</div>
+	 
+		</fieldset>
+		<fieldset class="mainInfo" id="mainInfo">
+			<div class="tab"><h2 class="selected tabTit" id="generalPro"><span class="icon-gongchengguanli iconfont"></span>主控项目</h2><h2 class="tabTit" id="normalPro"><span class="icon-gongchengguanli iconfont"></span>一般项目</h2></div>
+			<div class="tabCont generalPro">
+				<ul>
+					<li>
+						<h3>1. 标高、尺寸、起拱、造型要求(6.2.2条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>2. 饰面材料要求(6.2.3条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>3. 安装牢固(6.2.4条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>4. 吊杆、龙骨要求(6.2.5条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>5. 石膏板接缝要求(6.2.6条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录" ></textarea>
+					</li>														
+					<h2>* 此处监理(建设)单位填写</h2>														<textarea rows="5" class="comments accept" placeholder="监理(建设)单位验收记录" ></textarea>							
+				</ul>
+			</div>
+			<div class="tabCont normalPro">
+				<ul>
+					<li>
+						<h3>1. 标高、尺寸、起拱、造型要求(6.2.2条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>2. 饰面材料要求(6.2.3条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>3. 安装牢固(6.2.4条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li>
+						<h3>4. 吊杆、龙骨要求(6.2.5条)</h3>
+						<textarea rows="5" class="comments" placeholder="施工单位检查评定记录"></textarea>
+					</li>
+					<li class="errorAccept">
+						<h2>- 允许偏差</h2>
+						<div>							
+							<h3>表面平整度<span class="icon-arrow01down iconfont"></span> </h3>
+							<ul>
+								<li>
+									纸面石膏板(3mm)
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>
+								</li>
+								<li>
+									金属板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									矿棉板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									模板、塑料板、格栅
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>												
+							</ul>													
+							<h3>接缝直线度<span class="icon-arrow01down iconfont"></span></h3>
+							<ul>
+								<li>
+									纸面石膏板(3mm)
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>
+								</li>
+								<li>
+									金属板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									矿棉板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									模板、塑料板、格栅
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>												
+							</ul>								
+							<h3>解封高低差<span class="icon-arrow01down iconfont"></span></h3>
+							<ul>
+								<li>
+									纸面石膏板(3mm)
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>
+								</li>
+								<li>
+									金属板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									矿棉板
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>
+								<li>
+									模板、塑料板、格栅
+									<fieldset>
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+										<input type="text" number="true" maxlength="1" size="1">
+									</fieldset>									
+								</li>												
+							</ul>								
+														
+						</div>
+					</li>	
+					<h2>* 此处监理(建设)单位填写</h2>																											<textarea rows="5" class="comments accept" placeholder="监理(建设)单位验收记录" ></textarea>							
+				</ul>				
+			</div>
+		</fieldset>
+		<fieldset class="btmInfo">
+			<h2 class="formTit">施工单位检查评定结果</h2>
+				<div>
+					<label for="proName">专业工长(施工员)</label>
+					<input type="text" name="" placeholder="专业工长(施工员)签字">
+				</div>
+				<div>
+					<label for="proName">施工班组长</label>
+					<input type="text" name="" placeholder="专业工长(施工员)签字">
+				</div>				
+				<ul>					
+					<li>
+						<h3>5. 石膏板接缝要求(6.2.6条)</h3>
+						<textarea rows="5" class="comments" placeholder="" ></textarea>
+						<div>
+							<label for="proName">项目专业质量检查员</label>
+							<input type="text" name="" placeholder="专业工长(施工员)签字">
+						</div>
+						<div>
+							<label for="proName">日期</label>
+							<input type="text" name="" placeholder="">
+						</div>												
+					</li>																				
+				</ul>	
+			<h2 class="formTit">监理（建设）单位验收结论</h2>			
+				<ul>					
+					<li>
+						<h3 class="formTit">5. 石膏板接缝要求(6.2.6条)</h3>
+						<textarea rows="5" class="comments" placeholder="" ></textarea>
+						<div>
+							<label for="proName">项目专业质量检查员</label>
+							<input type="text" name="" placeholder="专业工长(施工员)签字">
+						</div>
+						<div>
+							<label for="proName">日期</label>
+							<input type="text" name="" placeholder="">
+						</div>												
+					</li>																				
+				</ul>						
+		</fieldset>
+		<footer>
+			<button>确认并提交</button>
+		</footer>
+	</form>
+</body>
+<script type="text/javascript">
+	var target = document.getElementsByClassName("tab");
+	var targetTop = target[0].offsetTop;
+	document.addEventListener("touchmove", function(e){
+		//console.log(document.body.scrollTop);
+		//console.log(e.clientY);
+		console.log(target[0].offsetTop);
+
+		if (document.body.scrollTop >= targetTop) {
+			target[0].style.position = "fixed";
+			target[0].style.top = "0";
+
+		} else {
+			target[0].style.position = "inherit";
+			target[0].style.top = targetTop;
+		}
+	})
+
+
+	$(".tabTit").on("touchstart", function(){
+
+		// console.log($(this).attr("id"));
+		$(this).addClass("selected").siblings().removeClass("selected");
+		$(".tabCont").hide();
+		$('.'+($(this).attr("id"))).show();
+	})
+
+	$(".errorAccept h3").on("touchstart",function(){
+		// console.log($(this).next("ul"))
+		//$(this).next("ul").show();
+		if($(this).find("span").hasClass("icon-arrow01down")) {
+			$(this).find("span").removeClass("icon-arrow01down").addClass("icon-arrow01up");
+		} else {
+			$(this).find("span").removeClass("icon-arrow01up").addClass("icon-arrow01down");			
+		}
+		$(this).next("ul").toggleClass('show');
+	})
+</script>
+</html>

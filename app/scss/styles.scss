@@ -1,0 +1,25 @@
+/*
+A custom Bootstrap 3.2 'Google Plus style' theme
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+
+@import "bootstrap/_variables";
+
+body, html {
+	height: 100%;
+}
+body {
+	// background: $gray-light;
+}
+
+
+// dashboard page
+
+@import "layout/_dashboard";

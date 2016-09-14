@@ -1,0 +1,246 @@
+@import "../bootstrap/_variables.scss";
+// dashboard page
+.dashboard {
+	padding: 15px auto ;
+	// margin-top:50px;
+	height: 100%;
+	.table {
+		td {
+			padding: 15px 8px;
+		}
+		tr {	
+			&:first-child{
+				background: inherit;
+			}
+			td {
+				&:first-child {
+					text-align: center;
+				}
+				&:last-child {
+					vertical-align: middle;
+				}
+			}
+			th {
+				&:first-child {
+					text-align: center;
+				}
+			}
+		}
+	}
+	nav.navigation {
+		text-align: right;
+	}
+	.quickSearch {
+		margin-bottom: 15px;
+		input {
+			border:1px solid #D9D9D9;
+			height: 30px;
+		}
+		select {
+			border: 1px solid #D9D9D9;
+			width:100px;
+			height: 30px;
+		}
+
+		label {
+			padding:0 15px;
+			&:first-child {
+				padding-left:0;
+			}
+		}
+		button {
+			// text-align: right;
+			float: right;
+		}
+	}
+	.row {
+		height: 100%;
+	}
+
+}
+
+// top nav bar
+.col-md-10 {
+	.navbar-collapse { 
+		// background: $brand-primary;
+		.nav {
+			a {
+				color: #eee;
+				box-sizing: border-box;
+				height: 50px;
+				&:hover {
+					background: #4f4f4f;
+					color:#fff;
+					cursor: pointer;
+				}				
+			}
+			li {
+				box-sizing: border-box;
+				&.active {
+					background: #4f4f4f;
+					a {
+						// border-bottom:3px solid $brand-primary;
+					}
+				}
+			}
+		}
+	}
+}
+.navbar { 
+	background: #242527;
+	margin-bottom: 0;
+	border:0;
+	nav { 
+
+		// height: 40px;
+		.nav {				
+			a {
+				padding:0 15px;
+				line-height: 50px;	
+			}
+			li {
+				&.active {
+					a {
+						// background: #e7e7e7;
+					}
+				}
+			}	
+		}
+	}
+	.logo {
+		margin: 0;
+		padding: 0;
+		line-height: 50px;
+		font-family: Microsoft Yahei;
+	}	
+} 
+
+
+
+.sideBar {
+	// border-right: 1px solid #eee;
+	background: #35363a;
+	padding: 50px 0 0;
+	height: 100%;
+	width: 215px;
+	position: relative;
+	z-index:1;
+	h2 {
+		font-size:14px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.sideBarTab {
+		display: none;
+		.panel {
+			border: 0 ;
+			margin:0;
+			background: none;
+			.panel-heading {
+				background: none;
+				border-bottom: none;
+				padding: 0;
+				&:hover {
+					background: #27272B;
+				}
+
+			}
+			.panel-body {
+				padding: 5px 0;
+				ul {
+					padding:0;
+					margin: 0;
+					a {
+						color: #cecfd3;
+						padding: 5px 5px 5px 35px;
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	// .list-group {
+	// 	.list-group-header {
+	// 		list-style: none;
+	// 		display: none;
+	// 	}
+	// 	li {
+	// 		border-bottom: 1px solid #414247;
+	// 	    border-right: 4px solid transparent;
+	// 	    display: block;
+	// 	    position: relative;
+	// 	    margin: 0;
+	// 	    padding: 10px 13px 10px 15px;
+	// 	    text-decoration: none;
+	// 	    font-size: 14px;
+	// 	    font-weight: 300;	
+	// 	    a {
+	// 	    	color: #eee;
+	// 	    }		
+	// 	}
+	// }
+	h4 {
+		a {
+			display: block;
+			color: #cecfd3;
+			font-size:14px;
+			padding:10px 15px;
+		}
+		&.panel-title {
+			a[aria-expanded=true] {
+				background: #27272B;
+			}
+		}
+	}
+}
+
+// main section
+.main {
+	height: 100%;
+	width: 100%;
+	padding-left:215px;
+	padding-top: 50px;
+	box-sizing: border-box;
+	float: none;
+	.breadcrumb {
+		font-size: 12px;
+	}	
+	& > div {
+		// width:
+		padding: 15px;
+	}
+}
+
+
+
+// popup
+
+.addProjectPop {
+	&.ngdialog-theme-plain {
+		.ngdialog-content {
+			width: 600px;
+		}
+	}
+	// add project 
+	#addProForm {
+		margin: 15px;
+	}
+}
+
+// back button
+.backBtn {
+	margin-bottom: 15px;
+}
+
+//
+
+.grayLine {
+	border-bottom: 1px solid #414247;
+}
+
+a {
+	&:hover {
+		text-decoration: none;
+	}
+}
