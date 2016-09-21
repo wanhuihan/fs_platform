@@ -18,29 +18,25 @@ body, html {
     padding: 15px 8px; }
   .dashboard .table tr:first-child {
     background: inherit; }
-  .dashboard .table tr td:first-child {
-    text-align: center; }
-  .dashboard .table tr td:last-child {
-    vertical-align: middle; }
+  .dashboard .table tr td {
+    border-bottom: 1px solid #eef4f7; }
+    .dashboard .table tr td:first-child {
+      text-align: center; }
+    .dashboard .table tr td:last-child {
+      vertical-align: middle; }
   .dashboard .table tr th:first-child {
     text-align: center; }
+  .dashboard .table tr:nth-child(odd) {
+    background: none; }
   .dashboard nav.navigation {
     text-align: right; }
   .dashboard .quickSearch {
-    margin-bottom: 15px; }
-    .dashboard .quickSearch input {
-      border: 1px solid #D9D9D9;
-      height: 30px; }
-    .dashboard .quickSearch select {
-      border: 1px solid #D9D9D9;
-      width: 100px;
-      height: 30px; }
+    margin-bottom: 15px;
+    font-size: 12px; }
     .dashboard .quickSearch label {
       padding: 0 15px; }
-      .dashboard .quickSearch label:first-child {
-        padding-left: 0; }
-    .dashboard .quickSearch button {
-      float: right; }
+    .dashboard .quickSearch > label {
+      padding-left: 0; }
   .dashboard .row {
     height: 100%; }
 
@@ -94,6 +90,8 @@ body, html {
         padding: 0; }
         .sideBar .sideBarTab .panel .panel-heading:hover {
           background: #27272B; }
+        .sideBar .sideBarTab .panel .panel-heading .fa {
+          float: right; }
       .sideBar .sideBarTab .panel .panel-body {
         padding: 5px 0; }
         .sideBar .sideBarTab .panel .panel-body ul {
@@ -103,6 +101,8 @@ body, html {
             color: #cecfd3;
             padding: 5px 5px 5px 35px;
             display: block; }
+      .sideBar .sideBarTab .panel .panel-collapse.in .panel-body a:hover {
+        background: #414247; }
   .sideBar h4 a {
     display: block;
     color: #cecfd3;
@@ -110,6 +110,9 @@ body, html {
     padding: 10px 15px; }
   .sideBar h4.panel-title a[aria-expanded=true] {
     background: #27272B; }
+
+.grayLine {
+  border-bottom: 1px solid #414247; }
 
 .main {
   height: 100%;
@@ -121,7 +124,27 @@ body, html {
   .main .breadcrumb {
     font-size: 12px; }
   .main > div {
-    padding: 15px; }
+    padding: 15px 0; }
+  .main .breadcrumb {
+    margin-right: -15px;
+    background: #f5f5f5;
+    line-height: 20px; }
+    .main .breadcrumb > li {
+      font-size: 14px; }
+      .main .breadcrumb > li + li:before {
+        content: " ";
+        padding: 0; }
+      .main .breadcrumb > li + li .fa:before {
+        padding: 0 10px; }
+    .main .breadcrumb li:first-child .fa:before {
+      padding: 0 10px 0 0; }
+  .main .backBtnGroup {
+    text-align: right; }
+    .main .backBtnGroup .backBtn {
+      margin-bottom: 20px;
+      font-size: 13px; }
+    .main .backBtnGroup .fa:before {
+      margin-right: 5px; }
 
 .addProjectPop.ngdialog-theme-plain .ngdialog-content {
   width: 600px; }
@@ -129,11 +152,150 @@ body, html {
 .addProjectPop #addProForm {
   margin: 15px; }
 
-.backBtn {
-  margin-bottom: 15px; }
-
-.grayLine {
-  border-bottom: 1px solid #414247; }
-
 a:hover {
   text-decoration: none; }
+
+.operationGroup .fa {
+  margin-right: 5px; }
+
+.overwrap {
+  width: 100%;
+  display: none;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000; }
+  .overwrap div .fa {
+    position: absolute;
+    z-index: 2001;
+    color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    font-size: 50px; }
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot?v=4.6.3");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.6.3") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.6.3") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.6.3") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.decoration_config .table {
+  font-size: 12px; }
+  .decoration_config .table td, .decoration_config .table th {
+    color: #777; }
+  .decoration_config .table .operationGroup {
+    padding-left: 0; }
+
+.decoration_config .alert {
+  margin-left: 15px; }
+
+.decoration_config .form-group .addPro {
+  float: right; }
+
+.decoration_config .form-group#addPro {
+  float: right; }
+
+.decorationConfigDetails .detailList {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .decorationConfigDetails .detailList span {
+    display: inline-block;
+    padding: 8px;
+    text-align: center;
+    line-height: 20px; }
+  .decorationConfigDetails .detailList > li > span {
+    border-bottom: 1px solid #eef4f7; }
+  .decorationConfigDetails .detailList li {
+    font-size: 0; }
+    .decorationConfigDetails .detailList li span {
+      font-size: 13px; }
+    .decorationConfigDetails .detailList li ul {
+      padding: 0; }
+  .decorationConfigDetails .detailList .listOrder {
+    width: 5%; }
+  .decorationConfigDetails .detailList .listProName {
+    width: 50%;
+    text-align: left; }
+  .decorationConfigDetails .detailList .listPos {
+    width: 10%;
+    text-align: left; }
+  .decorationConfigDetails .detailList .listCraft {
+    width: 5%; }
+  .decorationConfigDetails .detailList .listUnit {
+    width: 5%; }
+  .decorationConfigDetails .detailList .listWorkLoad {
+    width: 5%;
+    text-align: center; }
+  .decorationConfigDetails .detailList .listOperation {
+    width: 20%;
+    text-align: right; }
+  .decorationConfigDetails .detailList > li > span {
+    background: #f8fbfd; }
+  .decorationConfigDetails .detailList > li.listHead span {
+    background: #eef4f7; }
+  .decorationConfigDetails .detailList > li li {
+    background: inherit; }
+  .decorationConfigDetails .detailList > li > ul {
+    padding-left: 0;
+    color: #777; }
+    .decorationConfigDetails .detailList > li > ul > li .listProName img {
+      margin-left: 25px; }
+    .decorationConfigDetails .detailList > li > ul > li > ul > li .listProName img {
+      margin-left: 50px; }
+    .decorationConfigDetails .detailList > li > ul > li > ul > li > ul > li .listProName img {
+      margin-left: 75px; }
+    .decorationConfigDetails .detailList > li > ul .fa {
+      margin-right: 10px; }
+
+.decorationCraftFee .craftFeeListBox {
+  padding-left: 15px; }
+  .decorationCraftFee .craftFeeListBox table {
+    color: #777;
+    width: 100%; }
+    .decorationCraftFee .craftFeeListBox table .btn-group .btn {
+      border-radius: 0; }
+    .decorationCraftFee .craftFeeListBox table thead th {
+      background: #eef4f7;
+      padding: 8px; }
+    .decorationCraftFee .craftFeeListBox table tbody td {
+      padding: 8px; }
+    .decorationCraftFee .craftFeeListBox table tbody tr:nth-child(odd) {
+      background: #f8fbfd; }
+    .decorationCraftFee .craftFeeListBox table tbody tr:hover {
+      background: #eef4f7;
+      cursor: pointer; }
+    .decorationCraftFee .craftFeeListBox table tbody .num {
+      width: 3%; }
+    .decorationCraftFee .craftFeeListBox table tbody .craft {
+      width: 50%; }
+    .decorationCraftFee .craftFeeListBox table tbody .unit {
+      width: 5%; }
+    .decorationCraftFee .craftFeeListBox table tbody .operation {
+      width: 8%; }
+
+.decorationCraftFee .quickSearch .citySelect {
+  position: relative; }
+  .decorationCraftFee .quickSearch .citySelect ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    .decorationCraftFee .quickSearch .citySelect ul li {
+      padding: 5px 10px 5px; }
+  .decorationCraftFee .quickSearch .citySelect .cityList {
+    position: absolute;
+    top: 34px;
+    width: 100%;
+    overflow: auto;
+    height: 300px;
+    background: #fff; }
+    .decorationCraftFee .quickSearch .citySelect .cityList .citySelectItem:hover {
+      background: #eee; }

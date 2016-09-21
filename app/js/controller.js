@@ -50,6 +50,10 @@ app.config(function($routeProvider) {
         templateUrl : 'templates/decorationconfigdetails.html',
         controller: 'decorationConfigDetails',
     })
+    .when('/menu_gzfy', {
+        templateUrl: 'templates/menu_gzfy.html',
+        // controller: 'menu_gzfy'
+    })
 });
 
 app.controller("decorationConfigDetails", function($http, $scope, $controller, $location){
@@ -65,23 +69,167 @@ app.controller("decorationConfigDetails", function($http, $scope, $controller, $
     .error(function(response) {
         // console.log(response);
         if (!response) {
-          $scope.errMsgShow = false;
+            $scope.errMsgShow = false;
             $scope.errorMsg = '程序出现错误，请稍后再试';
         }
     })
 
-    console.log(processId);
+    // console.log(processId);
 
+    $scope.back2LastPage = function() {       
+        history.back(-1);
+    }
+})
+
+// 工种费用
+/**
+ * @ craftFee - all the craft type fees 
+ * @ craftData - all the craft types
+ * @ cities - all the cities
+**/
+app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
+
+    // Get all the craft type fees list form back end;
+    $http.jsonp("http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList?callback=JSON_CALLBACK")
+    .success(function(response, status) {
+        // console.log(response);
+        $scope.pagination.craftFee = response.datas;
+        $scope.pagination.isLastPgae = response.isLastPage;
+        $scope.pagination.pageCount = response.pageCount;
+        $scope.pagination.pageNumber = response.pageNumber;
+        $scope.pagination.pageSize = response.pageSize;
+        $scope.pagination.total = response.total;
+        $scope.craftFee = response.datas;
+
+        $scope.c = $scope.pagination.a(response.pageCount);  
+        // console.log(typeof $scope.c);      
+    })
+    // Get all the craft types form back end;
+    $http.jsonp("http://192.168.0.201:8080/decoration_manage/common/selectWorkTypesList?callback=JSON_CALLBACK")
+    .success(function(response, status) {
+        // console.log(response);
+        $scope.craftData = response.datas;
+    })
+    // Get the city list from back end;
+    $http.jsonp("http://192.168.0.201:8080/decoration_manage/common/selectAllCityList?callback=JSON_CALLBACK")
+    .success(function(response, status) {       
+        $scope.cityData = response.datas;
+        $scope.cities = new Array();
+        // console.log(response);
+        // recreate the city list for template page
+        for (var i in $scope.cityData) {
+            var letter = $scope.cityData[i];
+            for (var a = 0; a < letter.length; a++) {
+                $scope.cities.push({name:letter[a].city_name, cityCode: letter[a].city_code})
+            }
+        }
+    })
+
+    // the value for city list show & hide;
+    $scope.cityListShowVal = false; 
+
+    // function for city list showing
+    $scope.cityListShow = function() {
+        $scope.cityListShowVal = true;
+    }
+    // function for city list hiding
+    // the purpose for coding settimeout is when click the item in the city list, it will fire the blur function,
+    // the city list will be hidden immediately, it can't get the city value you click;
+    $scope.cityListHide = function() {
+        var HideCityListDelay = $timeout(function() {
+            $scope.cityListShowVal = false;
+            $timeout.cancel(HideCityListDelay);
+        },200)       
+    }
+
+    // input default value
+    $scope.name= "";
+    $scope.craftTypeSelect = "all";
+
+    $scope.cityCode = '';
+    // function for set the input value and city code
+    $scope.getCityCode = function(e) {
+        // console.log(e)
+        $scope.name = e.item.name;
+        $scope.cityCode = e.item.cityCode;
+        $(".citySelectInput").attr("city-code",e.item.cityCode);
+    }
+
+    // reset the input value for search craft type fess
+    $scope.resetInputSearch = function() {
+        $scope.name = '';
+        $(".craftSelect option:first").prop("selected","selected");
+    }
+
+
+    $scope.craftTypeFeeResult = function(e) {
+        console.log(e.name,e.craftTypeSelect);
+        console.log($(".citySelectInput").attr('city-code'));
+
+        // $http({
+        //     method: 'post',
+        //     url: 'http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList',
+        //     data: {''}
+
+        // })
+    }
+
+    $scope.pagination = {
+        pageCount: '',
+        pageNumber: 1,
+        pageSize: 20,
+        total: '',
+        isLastPgae: '',
+        currentPage: false,
+        a: function(p) {
+            var html = new Array();
+            for (var i = 0; i < p; i++) {
+                if ($scope.pagination.pageNumber == i+1) {
+                    $scope.pagination.currentPage = true;
+                } else {
+                    $scope.pagination.currentPage = false;
+                }
+                html.push({pageNum: i+1,current:$scope.pagination.currentPage});
+            }
+            return html;
+        },
+        nextPage: function() {            
+            $http({
+                method: 'jsonp',
+                url: 'http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList?callback=JSON_CALLBACK',
+                params: {
+                    area:  $scope.name,
+                    areaCode: $scope.cityCode,
+                    trades: $scope.craftTypeSelect,
+                    // tradesValue: '',
+                    pageNumber : $scope.pagination.pageNumber,
+                    pageSize : $scope.pagination.pageSize,
+                },
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+
+            }).success(function(response){
+                console.log(response)
+            })            
+        },
+        prevPage: function() {
+
+        }
+    }
 })
 
 app.controller("init", function($scope, $http, $location){
 
 	$scope.load = function() {
+    
 	    $http.get("http://192.168.0.100:3000/js/demo_data.js?callback=JSON_CALLBACK")
 	    .success(function(response,status,headers,config){
 	    	// console.log(response);
 	        $scope.navTitle = response.data;            
 	    })
+        .success(function(response,status,headers,config){
+            //alert(data);
+            $scope.navTitle = response.data;
+        })        
 	    .error(function(response) {
 	        // console.log(response);
 	        if (!response) {
@@ -108,7 +256,7 @@ app.controller("init", function($scope, $http, $location){
 	    	},200);  	
 	    // } 
 	   
-        console.log(window.location.href);   
+        // console.log(window.location.href);   
 		$(".navbar-nav:first-child").on("click","a", function(e) {
 			e.preventDefault();            
 			window.location.href= '#/'+$(this).attr("name");
@@ -125,8 +273,10 @@ app.controller("init", function($scope, $http, $location){
 })
 
 app.controller('decoration_config', function($scope,$http,ngDialog){
+    $(".overwrap").show();
     $http.jsonp("http://192.168.0.201:8080/decoration_manage/decoration/processConfiguration/selectList?callback=JSON_CALLBACK")
-    .success(function(response,status,headers,config) { 
+    .success(function(response,status,headers,config) {
+         $(".overwrap").hide();
         if (!response.success) {          
             $scope.errMsgShow = false;
             $scope.errorMsg = response.msg;
@@ -218,3 +368,10 @@ app.controller('decoration_config', function($scope,$http,ngDialog){
 })
 
 
+
+
+app.filter('trustHtml', function ($sce) {
+    return function (input) {
+        return $sce.trustAsHtml(input);
+    }
+});

@@ -1,7 +1,116 @@
-<div>
-	<ul>
-		<li ng-repeat="x in configDetails">
-			{{x.construction_description}}
+<div class="decorationConfigDetails">
+<!--  -->
+    <ol class="breadcrumb">
+      <li>
+      <a href="#">
+      <i class="fa fa-home" aria-hidden="true">装修管理</i>
+      </a>
+      </li>
+      <li>
+      <a href="#">
+      <i class="fa fa-angle-right" aria-hidden="true">装修配置</i>
+      </a>
+      </li>
+      <li class="active">
+      <i class="fa fa-angle-right" aria-hidden="true">工序配置</i>
+      </li>
+    </ol>
+		<div class="backBtnGroup">
+			<button ng-click="back2LastPage()" class="btn fa fa-mail-reply backBtn btn-default">返回</button>
+		</div>     
+	<ul class="detailList">
+		<li class="listHead">
+			<span class="listOrder">序号</span>
+			<span class="listProName">工程项目内容</span>
+			<span class="listPos">部位</span>
+			<span class="listCraft">施工工种</span>
+			<span class="listUnit">单位</span>
+			<span class="listWorkLoad">人工含量</span>
+			<span class="listOperation">&nbsp;</span>
 		</li>
+		<li class="" ng-repeat="list in configDetails">
+			<span class="listOrder">{{list.serial_number}}</span>
+			<span class="listProName">{{list.construction_description}}</span>
+			<span class="listPos">{{list.position}}</span>
+			<span class="listCraft">{{list.construction_trades_value}}</span>
+			<span class="listUnit">{{list.unit}}</span>
+			<span class="listWorkLoad">{{list.artificial_content}}-</span>
+			<span class="listOperation">
+				<button type="button" class="btn btn-info btn-xs">添加</button>
+				<button type="button" class="btn btn-success btn-xs">编辑</button>
+				<button type="button" class="btn btn-danger btn-xs">删除</button>
+			</span>
+
+			<ul class="" ng-repeat="listSecond in list.children">
+				<li>
+					<span class="listOrder"></span>
+					<span class="listProName">
+					<img src="img/level-down.png">{{listSecond.construction_description}}</span>
+					<span class="listPos">{{listSecond.position}}</span>
+					<span class="listCraft">{{listSecond.construction_trades_value}}</span>
+					<span class="listUnit">{{listSecond.unit}}</span>
+					<span class="listWorkLoad">{{listSecond.artificial_content}}</span>
+					<span class="listOperation">
+						<button type="button" class="btn btn-info btn-xs">添加</button>
+						<button type="button" class="btn btn-success btn-xs">编辑</button>
+						<button type="button" class="btn btn-danger btn-xs">删除</button>
+					</span>
+
+					<ul>
+						<li class="" ng-repeat="listThird in listSecond.children">
+							<span class="listOrder"></span>
+							<span class="listProName">
+							<img src="img/level-down.png">
+							{{listThird.construction_description}}</span>
+							<span class="listPos">{{listThird.position}}</span>
+							<span class="listCraft">{{listThird.construction_trades_value}}</span>
+							<span class="listUnit">{{listThird.unit}}</span>
+							<span class="listWorkLoad">{{listThird.artificial_content}}</span>
+							<span class="listOperation">
+								<button type="button" class="btn btn-info btn-xs">添加</button>
+								<button type="button" class="btn btn-success btn-xs">编辑</button>
+								<button type="button" class="btn btn-danger btn-xs">删除</button>
+							</span>
+							<ul class="" ng-repeat="listFourth in listThird.children">
+								<li >
+								<span class="listOrder"></span>
+								<span class="listProName">
+								<img src="img/level-down.png">
+								{{listFourth.construction_description}}</span>
+								<span class="listPos">{{listFourth.position}}</span>
+								<span class="listCraft">{{listFourth.construction_trades_value}}</span>
+								<span class="listUnit">{{listFourth.unit}}</span>
+								<span class="listWorkLoad">{{listFourth.artificial_content}}</span>
+								<span class="listOperation">
+									<button type="button" class="btn btn-info btn-xs">添加</button>
+									<button type="button" class="btn btn-success btn-xs">编辑</button>
+									<button type="button" class="btn btn-danger btn-xs">删除</button>
+								</span>
+									<ul>
+										<li ng-repeat="lsitFifth in listFourth.children">
+											<span class="listOrder"></span>
+											<i class="fa fa-caret-down" aria-hidden="true"></i>
+											<span class="listProName">{{lsitFifth.construction_description}}</span>
+											<span class="listPos">{{lsitFifth.position}}</span>
+											<span class="listCraft">{{lsitFifth.construction_trades_value}}</span>
+											<span class="listUnit">{{lsitFifth.unit}}</span>
+											<span class="listWorkLoad">{{lsitFifth.artificial_content}}</span>
+											<span class="listOperation">
+												<button type="button" class="btn btn-info btn-xs">添加</button>
+												<button type="button" class="btn btn-success btn-xs">编辑</button>
+												<button type="button" class="btn btn-danger btn-xs">删除</button>
+											</span>
+
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>					
+				</li>
+			</ul>
+		</li>	
 	</ul>
+
 </div>
+
