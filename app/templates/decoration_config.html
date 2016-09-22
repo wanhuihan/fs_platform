@@ -26,14 +26,8 @@
                 <div class="form-group">
                     <label>工种</label>
                     <select class="form-control" ng-model="construction_trades">
-                        <option value="">所有</option>
-                        <option value="3">水工</option>
-                        <option value="4">电工</option>
-                        <option value="5">瓦工</option>
-                        <option value="6">木工</option>
-                        <option value="7">油工</option>
-                        <option value="8">壮工</option>
-                        <option value="9">空调工</option>                       
+                        <option value="all">所有</option>
+                        <option value ="{{item.id}} " ng-repeat="item in craftData">{{item.name}}</option>                       
                     </select>
                 </div>
                 <div class="form-group" id="addPro">

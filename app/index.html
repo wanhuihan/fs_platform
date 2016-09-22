@@ -25,11 +25,7 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="css/styles.css" rel="stylesheet"> 
-
-     <script src="http://chieffancypants.github.io/angular-loading-bar/src/loading-bar.js"></script>
-        <link href='http://chieffancypants.github.io/angular-loading-bar/src/loading-bar.css' rel='stylesheet' />
-        
+    <link href="css/styles.css" rel="stylesheet">         
   </head>
   <body ng-app="fs" ng-controller="init" data-ng-init="load()">
     <header class="navbar navbar-static-top bs-docs-nav navbar-fixed-top">
@@ -103,11 +99,11 @@
                                     </a>
                                 </h4>                                
                             </div> 
-                            <div id="{{a.id}}" class="panel-collapse collapse">
+                            <div id="{{a.id}}" class="panel-collapse collapse" >
                                 <div class="panel-body">
                                     <ul>
-                                        <li ng-repeat="b in a.children">
-                                            <a href="#/{{b.id}}">{{b.text}}</a>
+                                        <li ng-repeat="b in a.children" >
+                                            <a ng-click="test($event)" id="{{b.id}}" class="panel-collapse-item" >{{b.text}}</a>
                                         </li>
                                     </ul>
                                 </div>

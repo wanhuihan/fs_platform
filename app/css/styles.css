@@ -102,6 +102,9 @@ body, html {
             padding: 5px 5px 5px 35px;
             display: block; }
       .sideBar .sideBarTab .panel .panel-collapse.in .panel-body a:hover {
+        background: #414247;
+        cursor: pointer; }
+      .sideBar .sideBarTab .panel .panel-collapse.in .panel-body a.active {
         background: #414247; }
   .sideBar h4 a {
     display: block;
@@ -145,6 +148,8 @@ body, html {
       font-size: 13px; }
     .main .backBtnGroup .fa:before {
       margin-right: 5px; }
+  .main .alert {
+    margin-left: 15px; }
 
 .addProjectPop.ngdialog-theme-plain .ngdialog-content {
   width: 600px; }
@@ -193,9 +198,6 @@ a:hover {
     color: #777; }
   .decoration_config .table .operationGroup {
     padding-left: 0; }
-
-.decoration_config .alert {
-  margin-left: 15px; }
 
 .decoration_config .form-group .addPro {
   float: right; }

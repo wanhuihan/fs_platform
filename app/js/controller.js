@@ -50,13 +50,46 @@ app.config(function($routeProvider) {
         templateUrl : 'templates/decorationconfigdetails.html',
         controller: 'decorationConfigDetails',
     })
-    .when('/menu_gzfy', {
+    .when('/menu_gzfy/', {
         templateUrl: 'templates/menu_gzfy.html',
         // controller: 'menu_gzfy'
     })
+
+    .when('/menu_gzfy/:pager', {
+        templateUrl: 'templates/menu_gzfy.html',
+        // controller: 'menu_gzfy'
+    })
+
+    .when('/menu_kfjl', {
+        templateUrl: 'templates/menu_kfjl.html',
+        // controller: 'callCenterRecords'
+    })
 });
 
-app.controller("decorationConfigDetails", function($http, $scope, $controller, $location){
+app.service('fsService', function($q, $http, $location){
+    var service = {};
+        service.decoration = {
+            redirectPage : function(e) {
+                console.log(e.target.id);
+                $location.path('/'+e.target.id);
+                this.highlightTarget(e.target);
+            },
+            highlightTarget: function(t) {
+                // console.log(t.className)
+                var leftSideBarH = 'panel-collapse-item';
+               
+                if (t.className.indexOf(leftSideBarH) >=0) {
+                    // console.log(t);
+                    angular.element(t).parents().find('.panel-collapse-item').removeClass('active');
+                    angular.element(t).addClass('active');
+                }
+            }
+        }
+    return service;
+})
+
+
+app.controller("decorationConfigDetails", function($http, $scope, $controller, $location, $sce){
     // console.log($location.url);
     var processId = $location.search()['processId'];
     $controller('init', {$scope: $scope});
@@ -87,29 +120,41 @@ app.controller("decorationConfigDetails", function($http, $scope, $controller, $
  * @ craftData - all the craft types
  * @ cities - all the cities
 **/
-app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
+app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce, $controller){
 
-    // Get all the craft type fees list form back end;
-    $http.jsonp("http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList?callback=JSON_CALLBACK")
-    .success(function(response, status) {
-        // console.log(response);
-        $scope.pagination.craftFee = response.datas;
-        $scope.pagination.isLastPgae = response.isLastPage;
-        $scope.pagination.pageCount = response.pageCount;
-        $scope.pagination.pageNumber = response.pageNumber;
-        $scope.pagination.pageSize = response.pageSize;
-        $scope.pagination.total = response.total;
-        $scope.craftFee = response.datas;
+    var pager = $location.search().pager;
+    console.log(pager);
+    $controller('init', {$scope: $scope});
+    $scope.craftFee = "";
+    if (!pager) {
+         // Get all the craft type fees list form back end;
+        $http.jsonp("http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList?callback=JSON_CALLBACK")
+        .success(function(response, status) {
+            // console.log(response);
+            $scope.pagination.craftFee = response.datas;
+            $scope.pagination.isLastPgae = response.isLastPage;
+            $scope.pagination.pageCount = response.pageCount;
+            $scope.pagination.pageNumber = response.pageNumber;
+            $scope.pagination.pageSize = response.pageSize;
+            $scope.pagination.total = response.total;
+            $scope.craftFee = response.datas;
+            $scope.c = $scope.pagination.a(response.pageCount);  
+            $scope.errMsgShow = true; 
+        }).error(function(response){
+            // console.log(response);
+            if (!response) {
+                $scope.errMsgShow = false;
+                $scope.errorMsg = '程序出现错误，请稍后再试';    
+            }
+        })      
+    } else {
+        if (typeof pager == 'number') {
+            console.log(123);
 
-        $scope.c = $scope.pagination.a(response.pageCount);  
-        // console.log(typeof $scope.c);      
-    })
-    // Get all the craft types form back end;
-    $http.jsonp("http://192.168.0.201:8080/decoration_manage/common/selectWorkTypesList?callback=JSON_CALLBACK")
-    .success(function(response, status) {
-        // console.log(response);
-        $scope.craftData = response.datas;
-    })
+        }
+    }
+
+
     // Get the city list from back end;
     $http.jsonp("http://192.168.0.201:8080/decoration_manage/common/selectAllCityList?callback=JSON_CALLBACK")
     .success(function(response, status) {       
@@ -124,7 +169,7 @@ app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
             }
         }
     })
-
+    
     // the value for city list show & hide;
     $scope.cityListShowVal = false; 
 
@@ -161,30 +206,17 @@ app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
         $(".craftSelect option:first").prop("selected","selected");
     }
 
-
-    $scope.craftTypeFeeResult = function(e) {
-        console.log(e.name,e.craftTypeSelect);
-        console.log($(".citySelectInput").attr('city-code'));
-
-        // $http({
-        //     method: 'post',
-        //     url: 'http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList',
-        //     data: {''}
-
-        // })
-    }
-
     $scope.pagination = {
         pageCount: '',
-        pageNumber: 1,
-        pageSize: 20,
+        pageNumber: '1',
+        pageSize: '20',
         total: '',
         isLastPgae: '',
         currentPage: false,
         a: function(p) {
             var html = new Array();
             for (var i = 0; i < p; i++) {
-                if ($scope.pagination.pageNumber == i+1) {
+                if ($scope.pagination.pageNumber == i + 1) {
                     $scope.pagination.currentPage = true;
                 } else {
                     $scope.pagination.currentPage = false;
@@ -193,7 +225,8 @@ app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
             }
             return html;
         },
-        nextPage: function() {            
+        nextPage: function() {    
+            // var  nextPNum =   $scope.pagination.pageNumber + 1;     
             $http({
                 method: 'jsonp',
                 url: 'http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList?callback=JSON_CALLBACK',
@@ -202,23 +235,32 @@ app.controller('menu_gzfy', function($scope, $http, $location, $timeout, $sce){
                     areaCode: $scope.cityCode,
                     trades: $scope.craftTypeSelect,
                     // tradesValue: '',
-                    pageNumber : $scope.pagination.pageNumber,
+                    pageNumber : $scope.pagination.pageNumber + 1,
                     pageSize : $scope.pagination.pageSize,
                 },
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 
             }).success(function(response){
-                console.log(response)
-            })            
+                console.log($scope.pagination.pageNumber);
+                $scope.pagination.pageNumber = response.pageNumber;
+                $scope.craftFee = response.datas;
+                $location.path('/menu_gzfy/').search({pager:response.pageNumber});
+                $scope.pagination.pageNumber = response.pageNumber;
+               
+            })   
+            // console.log(nextPNum)         
         },
         prevPage: function() {
 
         }
     }
+
+    // console.log($scope.pagination.pageNumber +1);
 })
 
-app.controller("init", function($scope, $http, $location){
+app.controller("init", function($scope, $http, $location, fsService, ngDialog){
 
+    $scope.currentSubCat =  false;
 	$scope.load = function() {
     
 	    $http.get("http://192.168.0.100:3000/js/demo_data.js?callback=JSON_CALLBACK")
@@ -264,16 +306,44 @@ app.controller("init", function($scope, $http, $location){
             if (currentCat == 'index') {
                 $(".sideBarTab").hide();             
             } 
-
             $(".catId_"+currentCat).show().siblings(".sideBarTab").hide();
             $($(this)[0]).parent("li").addClass("active").siblings("li").removeClass("active"); 
-
 		})	
+
+        $scope.test = function(e) {
+            // console.log(typeof e.target);
+            fsService.decoration.redirectPage(e);
+
+        }
 	}
+    $scope.showAddProcessPopup = function () {
+        ngDialog.open({ 
+            template: 'process_popup.html',
+            className: 'ngdialog-theme-plain addProjectPop',
+            scope: $scope
+        });
+    };
+
+
+    // Get all the craft types form back end;
+    $http.jsonp("http://192.168.0.201:8080/decoration_manage/common/selectWorkTypesList?callback=JSON_CALLBACK")
+    .success(function(response, status) {
+        // console.log(response);
+        $scope.craftData = response.datas;
+    })
+
+    $scope.craftListHtml = 'hhhh';
+
 })
 
-app.controller('decoration_config', function($scope,$http,ngDialog){
-    $(".overwrap").show();
+// 装修配置
+//  decoration configration
+
+app.controller('decoration_config', function($scope, $http, ngDialog, $location, fsService) {
+
+    $scope.currentSubCat = $location.path().slice(1);
+    console.log($scope.currentSubCat);
+    // $(".overwrap").show();
     $http.jsonp("http://192.168.0.201:8080/decoration_manage/decoration/processConfiguration/selectList?callback=JSON_CALLBACK")
     .success(function(response,status,headers,config) {
          $(".overwrap").hide();
@@ -288,8 +358,10 @@ app.controller('decoration_config', function($scope,$http,ngDialog){
             
         }
     })
+
     .error(function(response){
-        console.log(response);
+        $(".overwrap").hide();
+        // console.log(response);
         if (!response) {
           $scope.errMsgShow = false;
             $scope.errorMsg = '程序出现错误，请稍后再试';
@@ -308,14 +380,7 @@ app.controller('decoration_config', function($scope,$http,ngDialog){
             status: '',
             unit: ''
         })
-    }
-    $scope.showAddProcessPopup = function () {
-        ngDialog.open({ 
-            template: 'process_popup.html',
-            className: 'ngdialog-theme-plain addProjectPop',
-            scope: $scope
-        });
-    };  
+    }  
     $scope.showProcessDetailsPopup = function (e) {
         // console.log(e.item.serial_number);
         var process_configuration_id = e.item.process_configuration_id;
@@ -364,14 +429,14 @@ app.controller('decoration_config', function($scope,$http,ngDialog){
                 $scope.errorMsg = '程序出现错误，请稍后再试';
             }
         })        
-    }   
+    }
+
+
 })
 
 
+// app.controller("callCenterRecords", function($scope, $controller){
+//     $controller('init', {$scope: $scope});
+// })
 
 
-app.filter('trustHtml', function ($sce) {
-    return function (input) {
-        return $sce.trustAsHtml(input);
-    }
-});

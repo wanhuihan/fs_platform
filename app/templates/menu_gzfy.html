@@ -15,31 +15,36 @@
       <i class="fa fa-angle-right" aria-hidden="true">工种费用</i>
       </li>
     </ol>
-	<ul class="pagination">
-		<li>
-			<a href="#"><i class="fa fa-angle-left">上一页</i></a>
-		</li>	
-		<li>
-			<a ng-click="pagination.nextPage()"><i class="fa fa-angle-right">下一页</i></a>
-		</li>		
-		<li>当前第{{pagination.pageNumber}}页</li>
-		<li>
-			<select class="pageNum" ng-model="pagination.pageNumber">
-				<option ng-repeat="item in c" value="{{item.pageNum}}">{{item.pageNum}}</option>
-			</select>
-		</li>
-		<li>
-			<select class="perPage" ng-model="pagination.pageSize">
-				<option value="20">每页20条</option>
-				<option value="40">每页40条</option>
-				<option value="60">每页60条</option>
-				<option value="80">每页80条</option>
-				<option value="100">每页100条</option>
-			</select>
-		</li>
-	</ul>
-	
-	<div class="craftFeeListBox">
+
+    <div class="alert alert-danger" role="alert" ng-if="errorMsg">
+      {{errorMsg}}
+    </div> 
+
+	<div class="craftFeeListBox" ng-show="errMsgShow" >
+		<ul class="pagination">
+			<li>
+				<a href="#"><i class="fa fa-angle-left">上一页</i></a>
+			</li>	
+			<li>
+				<a ng-click="pagination.nextPage()"><i class="fa fa-angle-right">下一页</i></a>
+			</li>		
+			<li>当前第{{pagination.pageNumber}}页</li>
+			<a href="#/menu_gzfy/?page=1">123</a>
+			<li>
+				<select class="pageNum" ng-model="pagination.pageNumber">
+					<option ng-repeat="item in c" value="{{item.pageNum}}">{{item.pageNum}}</option>
+				</select>
+			</li>
+			<li>
+				<select class="perPage" ng-model="pagination.pageSize">
+					<option value="20">每页20条</option>
+					<option value="40">每页40条</option>
+					<option value="60">每页60条</option>
+					<option value="80">每页80条</option>
+					<option value="100">每页100条</option>
+				</select>
+			</li>
+		</ul>	
 		<table>
 			<thead>
 				<tr>
@@ -67,7 +72,6 @@
 
 								<button class="btn btn-default" ng-click="craftTypeFeeResult(this)">查询</button>
 								<button class="btn btn-info" ng-click="resetInputSearch()">重置</button>
-								
 							</div>
 						</form>				
 					</td>
