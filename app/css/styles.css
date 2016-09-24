@@ -40,19 +40,21 @@ body, html {
   .dashboard .row {
     height: 100%; }
 
-.col-md-10 .navbar-collapse .nav a {
+.navbar-collapse .nav a {
   color: #eee;
   box-sizing: border-box;
   height: 50px; }
-  .col-md-10 .navbar-collapse .nav a:hover {
+  .navbar-collapse .nav a:hover {
     background: #4f4f4f;
     color: #fff;
     cursor: pointer; }
-
-.col-md-10 .navbar-collapse .nav li {
-  box-sizing: border-box; }
-  .col-md-10 .navbar-collapse .nav li.active {
+  .navbar-collapse .nav a:active {
     background: #4f4f4f; }
+
+.navbar-collapse .nav li {
+  box-sizing: border-box; }
+  .navbar-collapse .nav li.active a {
+    color: red; }
 
 .navbar {
   background: #242527;
@@ -78,34 +80,32 @@ body, html {
     font-size: 14px;
     margin: 0;
     padding: 0; }
-  .sideBar .sideBarTab {
-    display: none; }
-    .sideBar .sideBarTab .panel {
-      border: 0;
-      margin: 0;
-      background: none; }
-      .sideBar .sideBarTab .panel .panel-heading {
-        background: none;
-        border-bottom: none;
-        padding: 0; }
-        .sideBar .sideBarTab .panel .panel-heading:hover {
-          background: #27272B; }
-        .sideBar .sideBarTab .panel .panel-heading .fa {
-          float: right; }
-      .sideBar .sideBarTab .panel .panel-body {
-        padding: 5px 0; }
-        .sideBar .sideBarTab .panel .panel-body ul {
-          padding: 0;
-          margin: 0; }
-          .sideBar .sideBarTab .panel .panel-body ul a {
-            color: #cecfd3;
-            padding: 5px 5px 5px 35px;
-            display: block; }
-      .sideBar .sideBarTab .panel .panel-collapse.in .panel-body a:hover {
-        background: #414247;
-        cursor: pointer; }
-      .sideBar .sideBarTab .panel .panel-collapse.in .panel-body a.active {
-        background: #414247; }
+  .sideBar .sideBarTab .panel {
+    border: 0;
+    margin: 0;
+    background: none; }
+    .sideBar .sideBarTab .panel .panel-heading {
+      background: none;
+      border-bottom: none;
+      padding: 0; }
+      .sideBar .sideBarTab .panel .panel-heading:hover {
+        background: #27272B; }
+      .sideBar .sideBarTab .panel .panel-heading .fa {
+        float: right; }
+    .sideBar .sideBarTab .panel .panel-body {
+      padding: 5px 0; }
+      .sideBar .sideBarTab .panel .panel-body ul {
+        padding: 0;
+        margin: 0; }
+        .sideBar .sideBarTab .panel .panel-body ul a {
+          color: #cecfd3;
+          padding: 5px 5px 5px 35px;
+          display: block; }
+    .sideBar .sideBarTab .panel .panel-body a:hover {
+      background: #414247;
+      cursor: pointer; }
+    .sideBar .sideBarTab .panel .panel-body a.active {
+      background: #414247; }
   .sideBar h4 a {
     display: block;
     color: #cecfd3;

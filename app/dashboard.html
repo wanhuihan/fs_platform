@@ -31,18 +31,22 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
   </head>
-  <body ng-app="fs" ng-controller="fs">
- 
+  <body ng-app="fs">
 
-<ui-view name="topNav"></ui-view>
 
-<ui-view name="sideBar"></ui-view>
+    <header class="topNav" ui-view="topNav" >
 
-<ui-view name="mainSection"></ui-view>
+    </header>
 
-</section>   
-    <div  class="login" ng-include="'templates/login.html'" ng-show="loginFormShow"></div>
-    
+
+    <section class="sideBar" ui-view="sideBar" >
+
+    </section>
+
+    <section class="mainSection" ui-view="mainSection">
+
+    </section>  
+
   </body>
 </html>
 

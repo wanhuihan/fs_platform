@@ -69,32 +69,37 @@
 }
 
 // top nav bar
-.col-md-10 {
-	.navbar-collapse { 
-		// background: $brand-primary;
-		.nav {
-			a {
-				color: #eee;
-				box-sizing: border-box;
-				height: 50px;
-				&:hover {
-					background: #4f4f4f;
-					color:#fff;
-					cursor: pointer;
-				}				
-			}
-			li {
-				box-sizing: border-box;
-				&.active {
-					background: #4f4f4f;
-					a {
-						// border-bottom:3px solid $brand-primary;
-					}
+
+.navbar-collapse { 
+	// background: $brand-primary;
+	.nav {
+		a {
+			color: #eee;
+			box-sizing: border-box;
+			height: 50px;
+			&:hover {
+				background: #4f4f4f;
+				color:#fff;
+				cursor: pointer;
+			}	
+			&:active {
+				background: #4f4f4f;
+			}			
+		}
+		li {
+			box-sizing: border-box;
+			&.active {
+				// background: #4f4f4f;
+				a {
+					// border-bottom:3px solid $brand-primary;
+					color: red;
 				}
 			}
 		}
 	}
 }
+
+
 .navbar { 
 	background: #242527;
 	margin-bottom: 0;
@@ -140,7 +145,7 @@
 	}
 
 	.sideBarTab {
-		display: none;
+		// display: none;
 		.panel {
 			border: 0 ;
 			margin:0;
@@ -168,8 +173,8 @@
 					}
 				}
 			}
-			.panel-collapse {
-				&.in {
+			// .panel-collapse {
+				// &.in {
 					.panel-body {
 						a {
 							&:hover {
@@ -181,8 +186,8 @@
 							}
 						}
 					}
-				}
-			}
+				// }
+			// }
 		}
 	}
 	h4 {
