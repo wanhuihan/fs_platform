@@ -1,4 +1,4 @@
-    <div class="col-md-12 decoration_config" class="row" ng-controller="decoration_config" >
+    <div class="col-md-12 decoration_config" class="row" >
         <ol class="breadcrumb">
           <li>
           <a href="#">
@@ -17,7 +17,7 @@
         <div class="alert alert-danger" role="alert" ng-if="errorMsg">
           {{errorMsg}}
         </div>        
-        <div class="container-fluid" ng-show="errMsgShow" >
+        <div class="container-fluid" ng-show="fs.errorMsgShow" >
             <form class="quickSearch form-inline">
                 <div class="form-group">
                     <label>工序名称</label>
@@ -26,16 +26,14 @@
                 <div class="form-group">
                     <label>工种</label>
                     <select class="form-control" ng-model="construction_trades">
-                        <option value="all">所有</option>
+                        <option value="">所有</option>
                         <option value ="{{item.id}} " ng-repeat="item in craftData">{{item.name}}</option>                       
                     </select>
                 </div>
                 <div class="form-group" id="addPro">
                     <button class="btn btn-primary addPro" ng-click="showAddProcessPopup()">添加工序</button>
                 </div>
-
-            </form>
-            
+            </form>            
             <table width="100%" class="table table-hover table-striped">
                 <tr>
                     <th width="5%">序号</th>

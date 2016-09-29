@@ -21,7 +21,6 @@
 	}
 }
 
-
 .decorationConfigDetails {
 	// position: relative;
 	.detailList {
@@ -140,6 +139,7 @@
 		table {
 			color: #777;
 			width: 100%;
+			font-size: 13px;
 			.btn-group {
 				.btn {
 					border-radius: 0;
@@ -206,6 +206,9 @@
 					}
 				}
 			}
+		}
+		.pagination  {
+			margin: 0;
 		}
 	}
 }
