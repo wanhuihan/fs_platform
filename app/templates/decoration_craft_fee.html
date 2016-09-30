@@ -39,7 +39,7 @@
                     </div>
                     <div for="craft" class="craft form-group craftSelect">
                         <label>工种</label>                   
-                        <select class="form-control" ng-model="pager.craftId">
+                        <select class="form-control" ng-model="terms.craftId">
                             <option value="">所有</option>
                             <option ng-repeat="craftItem in craftData" 
                                     value="{{craftItem.id}}">
@@ -48,8 +48,8 @@
                         </select>
                     </div>
                 <div class="form-group">
-                    <button class="btn btn-default" ng-click="quickSearchFun(this)">查询</button>
-                    <button class="btn btn-info" ng-click="resetInputSearch()">重置</button>
+                    <button class="btn btn-default quickSearchCheck" ng-click="pageFun($event)">查询</button>
+                    <button class="btn btn-info resetQuickSearchItem" ng-click="pageFun($event)">重置</button>
                 </div>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
@@ -58,35 +58,32 @@
 
                     <a
                         class="previous" 
-                        ng-click="test($event)" 
+                        ng-click="pageFun($event)" 
                         ng-class="{true: '', false: 'disabled'}[pagination.lastPageBtnActive]" >上一页
                     </a>
 
                     <a 
                         class="next" 
-                        ng-click="test($event)"
+                        ng-click="pageFun($event)"
                         ng-class="{true: '', false: 'disabled'}[pagination.nextPageBtnActive]"
                     >下一页
                     </a>
 
                   </li>    
-                  <li>当前第<{{pagination.pageNumber}}>页</li>
-                  <li>总共{{pagination.pageCount}}页</li>
+                  <li class="pagerInfo">当前第<b>{{pagination.pageNumber}}</b>页</li>
+                  <li class="pagerInfo">总共<b>{{pagination.pageCount}}</b>页</li>
                   <li>      
                     <select 
                         class="pageSelect" 
                         ng-model="currentPageNum" 
-                        ng-change="test('pageNumSelect')"
+                        ng-change="pageFun('pageNumSelect')"
                         >
                         <option ng-repeat="item in pageSelect" value='{{item}}'>{{item}}</option>
                     </select>
 
                   </li>
-                    
-
                   <li>
-                    {{pagination.pageSize}}
-                    <select class="perPage" ng-model="pagination.pageSize" ng-change="test('perPage')">
+                    <select class="perPage" ng-model="pagination.pageSize" ng-change="pageFun('perPage')">
                       <option value="20">每页20条</option>
                       <option value="40">每页40条</option>
                       <option value="60">每页60条</option>
@@ -99,14 +96,14 @@
                 {{x}}       
             </form>
                     
-            <table width="100%" class="table table-hover table-striped">
+            <table width="100%" class="table table-hover table-striped decorationCraftFeeList">
                 <tr>
                     <th width="5%">序号</th>
                     <th width="10%">工种</th>
                     <th width="5%">单位</th>
                     <th width="20%">地区信息价综合工作日</th>
                     <th width="10%">倍率</th>
-                    <th width="25%">生命屋标准综合工日<br/>（信息价*倍率）</th>
+                    <th width="25%">生命屋标准综合工日<br/>(信息价*倍率)</th>
                     <th width="10%">区域</th>
                     <th width="15%"></th>
                 </tr>
@@ -114,16 +111,35 @@
                     <td>{{item.serial_number}}</td>
                     <td>{{item.trades_value}}</td>
                     <td>{{item.unit}}</td>
-                    <td>{{item.work_area}}</td>
-                    <td>{{item.rate}}</td>
+                    <td>
+                        {{item.work_area}}
+                        <input type="text" name="work_area" id="work_area_{{$index}}" value="{{item.work_area}}" class="work_area inputEditActive" >
+                    </td>
+                    <td>
+                        {{item.rate}}
+                        <input type="text" class="rate inputEditActive" name="rate" value="{{item.rate}}" id="rate_{{$index}}">
+                    </td>
                     <td> {{item.life_house_work}} </td>
                     <td>{{item.area}}</td>
+                    <input type="hidden" name="labor_expense_statement_id_{{$index}}" value ='{{item.labor_expense_statement_id}} '>
                     <td align="right" class="operationGroup">
-                        <div class="">
+                        <div class="operation">
+                            <a class="btn btn-success btn-xs" 
+                                ng-click="quickEdit.quickEditFun($event)"
+                                data = "{{$index}}"
+                                id = "quickEditFun_{{$index}}"
+                                >
+                                编辑</a>
 
-                            <a href="javscript:void(0)" ng-click="showProcessDetailsPopup(this)" class="btn btn-info btn-xs">查看</a>
-                            <a class="btn btn-success btn-xs" href="index.html#/decorationconfigdetails/?processId={{item.process_configuration_id}}">编辑</a>
-                            <a href="" class="btn btn-danger btn-xs">删除</a>
+                            <a  class="btn btn-primary btn-xs quickEditSave" 
+                                id="quickEditSave_{{$index}}"
+                                
+                                ng-click="quickEdit.quickEditSave($event)">
+                                保存</a>
+                            <a  class="btn btn-primary btn-xs inputEditCancel" 
+                                id="inputEditCancel_{{$index}}"
+                                ng-click="quickEdit.inputEditCancel()">
+                                取消</a>    
                         </div>
                     </td>
                 </tr>

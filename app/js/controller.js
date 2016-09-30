@@ -8,7 +8,7 @@ app.config(function($stateProvider, $urlRouterProvider){
         resolve: {
             getNavBarData : function($http) {
                 return $http({method:'post', url: "http://192.168.0.201:8080/decoration_manage/system/selectAllMenuList", params: {
-                    token: '3FB7A1E6933D7B73D0B2DC97C21BE73A',
+                    token: '9F1257D54952E9E502BE705D80F77C86',
                 }})
             },
             getCraftData: function($http) {  
@@ -201,98 +201,9 @@ app.controller('process_config', function($scope, $http, getCraftData) {
 
 
 app.controller("craft_fee", function($location, $scope, $http, getCityData, getCraftData, $timeout, $q, $stateParams, getconfigData) {
-    
-//     $scope.craftData = getCraftData.data.datas;
+   
 
-//     $scope.pager = {
-//         pageNumber: 1,
-//         pageCount: '',
-//         pageSize: '20',
-//         cityCode: '',
-//         cityName: '',
-//         craftId: '',
-//         showPageSelect: function(p) {
-//             var num = new Array();
-//             for (var i = 0; i < p; i++) {
-//                 num.push(i+1)
-//             }
-//             return num;
-//         },
-//         pageNumSelect: '',
-//         pageNums: '',
-//         nextPageNum: '',
-//         nextPageBtnActive: true,
-//         lastPageBtnActive: false,
-//         lastPageNum: '',
-//         currentPageNum: 1,
-//         total: ''
-
-//     }
-
-//     $scope.name = "";  
- 
-//     $scope.params = {
-//         pageSize:  '',
-//         pageNumber: '',
-//         pageCount: '',
-//         cityCode: '',
-//         craftId: '',
-//     }
-
-//     $scope.pager.total = getconfigData.data.total;
-//     if ($stateParams.pageNum == undefined) {
-
-//         // $scope.data = getconfigData.data.datas;
-//         $scope.pager.pageNumSelect = $scope.pager.showPageSelect(getconfigData.data.pageCount);
-//         $scope.pager.pageNumber = getconfigData.data.pageNumber;
-//         $scope.pager.currentPageNum = getconfigData.data.pageNumber;
-//         $scope.pager.nextPageNum = 2 ;
-//         $scope.pager.pageCount = getconfigData.data.pageCount;
-//         $scope.pager.total = getconfigData.data.total;
-//         // console.log('first');
-//         $scope.pager.lastPageBtnActive = false;
-//         $scope.params.pageNumber = 2;
-//         $scope.pager.total = getconfigData.data.total;
-
-
-//     } else if ($stateParams.pageNum == 1) {
-
-//         $scope.pager.nextPageNum = parseInt($stateParams.pageNum) + 1 ;
-//         $scope.pager.lastPageBtnActive = false;
-//         $scope.pager.pageCount = $stateParams.pageCount;
-//         $scope.pager.pageNumber = parseInt($stateParams.pageNum);
-//         $scope.pager.pageNumSelect = $scope.pager.showPageSelect($stateParams.pageCount);
-//         $scope.pager.currentPageNum = $stateParams.pageNum;
-//         $scope.pager.pageSize = $stateParams.pageSize;
-//         $scope.pager.cityCode = $stateParams.cityCode;
-//         $scope.name = $stateParams.cityName;
-//         $scope.pager.craftId = $stateParams.craftId;
-//         angular.element(document.querySelector('.citySelectInput')).attr("city-code",($stateParams.cityCode));
-
-//         // 
-
-//     } else {
-        
-//         $scope.pager.lastPageBtnActive = true;
-//         $scope.pager.nextPageNum = parseInt($stateParams.pageNum) + 1 ;
-//         $scope.pager.lastPageNum = parseInt($stateParams.pageNum) - 1 ; 
-
-//         $scope.pager.pageNumSelect = $scope.pager.showPageSelect($stateParams.pageCount);
-//         $scope.pager.pageCount = $stateParams.pageCount;
-//         $scope.pager.pageNumber = parseInt($stateParams.pageNum);
-//         $scope.pager.currentPageNum = $stateParams.pageNum;
-//         $scope.pager.pageSize = $stateParams.pageSize;
-//         $scope.pager.cityCode = $stateParams.cityCode;
-//         $scope.name = $stateParams.cityName;
-//         $scope.pager.craftId = $stateParams.craftId;
-//         angular.element(document.querySelector('.citySelectInput')).attr("city-code",($stateParams.cityCode));
-        
-//         // console.log($scope.pager.name)
-//     }
-
-
-//     // console.log($stateParams);
-
+    $scope.craftData = getCraftData.data.datas;
 
 /*
  * get the cities list function, no need remove 
@@ -302,7 +213,7 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
     $scope.cityData = getCityData.data.datas;
 
     $scope.cities = new Array();
-
+    $scope.name = "";
     for (var i in $scope.cityData) {
         var letter = $scope.cityData[i];
         // console.log(letter)
@@ -338,82 +249,13 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
         // console.log(e)
         if ($scope.name == '') {
             angular.element(document.querySelector('.citySelectInput')).attr("city-code",(''));
-            $scope.pager.cityCode = '';
+            $scope.terms.cityCode = '';
         }
     }
 /*
  * get the cities list function, no need remove 
  * ================GET CITY LIST END==================
 */
-
-
-
-//     $scope.params.pageSize = $scope.pager.pageSize;
-//     $scope.params.pageNumber = $stateParams.pageNum;
-//     $scope.params.pageCount = $scope.pager.pageCount;
-//     $scope.params.cityCode = $scope.pager.cityCode;
-//     $scope.params.craftId = $scope.pager.craftId;
-
-//     $http({
-//         method: 'post',
-//         url: "http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList",
-//         params: $scope.params
-//     }).success(function(r) {
-//         $scope.data = r.datas;
-//         // console.log($scope.pager.pageNumber)
-//         $scope.pager.pageCount = r.pageCount;
-//         console.log(r.pageCount);
-//         $scope.pager.pageNumSelect = $scope.pager.showPageSelect(r.pageCount);
-
-//     }) 
-
-//     $scope.quickSearchFun = function(n) {
-
-//         $location.path('dashboard/menu_gzfy').search({
-//             pageNum:1, 
-//             cityCode:$scope.pager.cityCode, 
-//             craftId: $scope.pager.craftId,
-//             cityName: $scope.name,
-//             pageSize: $scope.pager.pageSize
-//         })
-//     }
-
-
-
-//     $scope.showListAsPageSize = function(e) {
-
-//         console.log($scope.pager.total / $scope.pager.pageSize);
-
-//         // $scope.pager.pageCount =
-//         $scope.pager.pageCount =  $scope.pager.total / $scope.pager.pageSize;
-//         $scope.pager.pageNumber = 1;
-//         $location.path('dashboard/menu_gzfy').search({
-//             pageNum: $scope.pager.pageNumber, 
-//             cityCode: $scope.pager.cityCode, 
-//             craftId: $scope.pager.craftId,
-//             cityName: $scope.name,
-//             pageSize: $scope.pager.pageSize,
-//             pageCount: Math.ceil($scope.pager.total / $scope.pager.pageSize)
-//         })        
-//     }
-
-//      $scope.showListAsPageNum = function() {
-
-//         $scope.pager.pageCount =  $scope.pager.total / $scope.pager.pageSize;
-
-//         $location.path('dashboard/menu_gzfy').search({
-//             pageNum: $scope.pager.pageNumber, 
-//             cityCode: $scope.pager.cityCode, 
-//             craftId: $scope.pager.craftId,
-//             cityName: $scope.name,
-//             pageSize: $scope.pager.pageSize,
-//             pageCount: Math.ceil($scope.pager.total / $scope.pager.pageSize)
-//         })        
-//     }   
-//     // console.log($scope.pager.total);
-    // console.log(getconfigData.data);
-
-
 
     $scope.reSetPageSelect = function(data) {
         var pNum = new Array();
@@ -438,19 +280,18 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
         nextPageBtnActive: true,
     }
 
-
-    console.log($scope.pagination.pageNumber) 
+    // console.log($scope.pagination.pageNumber) 
     
     $scope.data = getconfigData.data.datas;
-
+    console.log($scope.data);
     $scope.terms = {
         cityCode: '',
         cityName: '',
-        trades: '',   
+        craftId: '',   
     }
 
     // console.log(getconfigData)
-    $scope.test = function(e) {
+    $scope.pageFun = function(e) {
 
          console.log(typeof e)
 
@@ -533,25 +374,78 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
                 $scope.getcraftFee(obj);   
                 console.log($scope.pagination)
                 break;
+
+            case 'btn btn-default quickSearchCheck':
+
+                $scope.pagination.pageNumber = 1;
+                $scope.pagination.pageCount = 20;
+
+                $scope.terms.cityName = $scope.name;
+                $scope.terms.cityCode = angular.element(document.querySelector('.citySelectInput')).attr("city-code");               
+                var obj = Object.assign($scope.pagination, $scope.terms);
+                $scope.getcraftFee(obj);                  
+                break;
+
+            case 'btn btn-info resetQuickSearchItem':
+                console.log(123);
+                $scope.terms.cityName = '';
+                $scope.terms.cityCode = '';
+                $scope.pagination.pageNumber = 1;
+                $scope.pagination.pageCount = 20;
+                var obj = Object.assign($scope.pagination, $scope.terms);
+                $scope.getcraftFee(obj);                  
+                break;
         }
     }
-    // console.log($scope.currentPageNum)
+
+
     $scope.getcraftFee = function(obj) {
+
         $http({
             method: 'post',
             url: "http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList",
             params: obj
         }).success(function(r) {
-
+            // console.log(r)
             $scope.data = r.datas;
             $scope.pagination.pageCount = r.pageCount;
             $scope.pagination.pageNumber = r.pageNumber;
             // $scope.pagination.pageSelect = $scope.reSetPageSelect(r.pageCount);
             $scope.pageSelect = $scope.reSetPageSelect(r.pageCount);
             $scope.currentPageNum = r.pageNumber.toString();
-
+            // console.log($scope.pagination.pageCount)
         })
     }
+
+    // quick edit details
+    $scope.quickEdit = {
+
+        quickEditFun: function(e) {
+            // console.log(e.target.attributes.data.value);
+            var feeId = e.target.attributes.data.value;
+            console.log(angular.element(document.querySelector("#work_area_"+feeId))[0].value);
+
+            angular.element(document.querySelector("#quickEditFun_"+feeId))[0].style.display = 'none';
+            angular.element(document.querySelector("#quickEditSave_"+feeId))[0].style.display = 'inline-block';
+            angular.element(document.querySelector("#inputEditCancel_"+feeId))[0].style.display = 'inline-block';
+
+            // console.log(angular.element(document.querySelector("#quickEditFun_"+feeId)))
+        },
+
+        quickEditSave: function(e) {
+            console.log(e)
+        },
+
+        inputEditCancel: function(e) {
+            console.log(e)
+
+        }
+    }
+
+    /*
+     * 通过id来查找相对应的id的值 拼起来传给后台    
+    */
+
 })
 
 
@@ -560,7 +454,7 @@ var g = {
     error: {
 
         _CONNECTIVE_ERROR: '数据库连接出错，请稍后再试',
-
         _JS_FUNCTION_ERROR: 'Javascript代码错误',
+
     }
 }

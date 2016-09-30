@@ -11,34 +11,38 @@ author: bootply.com
 body, html {
   height: 100%; }
 
-.dashboard {
-  padding: 15px auto;
-  height: 100%; }
-  .dashboard .table td {
-    padding: 15px 8px; }
-  .dashboard .table tr:first-child {
-    background: inherit; }
-  .dashboard .table tr td {
-    border-bottom: 1px solid #eef4f7; }
-    .dashboard .table tr td:first-child {
-      text-align: center; }
-    .dashboard .table tr td:last-child {
-      vertical-align: middle; }
-  .dashboard .table tr th:first-child {
+.dashboard .table td {
+  padding: 15px 8px; }
+
+.dashboard .table tr:first-child {
+  background: inherit; }
+
+.dashboard .table tr td {
+  border-bottom: 1px solid #eef4f7; }
+  .dashboard .table tr td:first-child {
     text-align: center; }
-  .dashboard .table tr:nth-child(odd) {
-    background: none; }
-  .dashboard nav.navigation {
-    text-align: right; }
-  .dashboard .quickSearch {
-    margin-bottom: 15px;
-    font-size: 12px; }
-    .dashboard .quickSearch label {
-      padding: 0 15px; }
-    .dashboard .quickSearch > label {
-      padding-left: 0; }
-  .dashboard .row {
-    height: 100%; }
+  .dashboard .table tr td:last-child {
+    vertical-align: middle; }
+
+.dashboard .table tr th:first-child {
+  text-align: center; }
+
+.dashboard .table tr:nth-child(odd) {
+  background: none; }
+
+.dashboard nav.navigation {
+  text-align: right; }
+
+.dashboard .quickSearch {
+  margin-bottom: 15px;
+  font-size: 12px; }
+  .dashboard .quickSearch label {
+    padding: 0 15px; }
+  .dashboard .quickSearch > label {
+    padding-left: 0; }
+
+.dashboard .row {
+  height: 100%; }
 
 .navbar-collapse .nav a {
   color: #eee;
@@ -287,8 +291,9 @@ a.disabled {
       width: 50%; }
     .decorationCraftFee .craftFeeListBox table tbody .unit {
       width: 5%; }
-    .decorationCraftFee .craftFeeListBox table tbody .operation {
-      width: 8%; }
+    .decorationCraftFee .craftFeeListBox table tbody .operation .quickEditSave,
+    .decorationCraftFee .craftFeeListBox table tbody .operation .inputEditCancel {
+      display: none; }
 
 .decorationCraftFee .quickSearch .citySelect {
   position: relative; }
@@ -304,9 +309,37 @@ a.disabled {
     width: 100%;
     overflow: auto;
     height: 300px;
+    z-index: 1;
     background: #fff; }
     .decorationCraftFee .quickSearch .citySelect .cityList .citySelectItem:hover {
       background: #eee; }
 
 .decorationCraftFee .quickSearch .pagination {
   margin: 0; }
+  .decorationCraftFee .quickSearch .pagination li .next {
+    border-radius: 15px;
+    margin-left: 10px; }
+  .decorationCraftFee .quickSearch .pagination .pagerInfo {
+    padding: 5px 0px 5px 10px;
+    line-height: 28px;
+    color: #666; }
+  .decorationCraftFee .quickSearch .pagination select {
+    padding: 5px 14px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-left: 10px; }
+
+.decorationCraftFee .quickSearch .col-md-4 {
+  text-align: right; }
+
+.decorationCraftFee .decorationCraftFeeList td {
+  position: relative; }
+  .decorationCraftFee .decorationCraftFeeList td input {
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 50px;
+    box-sizing: border-box;
+    border: 1px solid;
+    display: none; }

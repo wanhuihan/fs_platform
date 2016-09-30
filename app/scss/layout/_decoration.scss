@@ -174,7 +174,10 @@
 					width:5%;
 				}
 				.operation {
-					width: 8%;
+					.quickEditSave, 
+					.inputEditCancel {
+						display: none;
+					}
 				}
 			}
 
@@ -198,6 +201,7 @@
 				width: 100%;
 				overflow: auto;
 				height: 300px;
+				z-index: 1;
 				background: #fff;
 				// display: none;
 				.citySelectItem  {
@@ -209,6 +213,41 @@
 		}
 		.pagination  {
 			margin: 0;
+			li {
+				.next {
+					border-radius: 15px;
+					margin-left: 10px;
+				}
+			}
+			.pagerInfo {
+				padding: 5px 0px 5px 10px;
+				line-height: 28px;
+				color: #666;
+			}
+			select {
+				padding: 5px 14px;
+				border: 1px solid #ddd;
+				border-radius:2px;
+				margin-left:10px;
+			}
+		}
+		.col-md-4 {
+			text-align: right;
+		}
+	}
+	.decorationCraftFeeList {
+		td {
+			position: relative;
+			input {
+				display: block;
+				position: absolute;
+				top:8px;
+				left:8px;
+				width:50px;
+				box-sizing: border-box;
+				border: 1px solid;
+				display: none;
+			}
 		}
 	}
 }
