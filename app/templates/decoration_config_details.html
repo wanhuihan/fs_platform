@@ -16,9 +16,13 @@
       </li>
     </ol>
 		<div class="backBtnGroup">
+			
 			<button ng-click="back2LastPage()" class="btn fa fa-mail-reply backBtn btn-default">返回</button>
+
+			<button class="btn fa fa-plus" ng-click="AddItemInputShow('topLevel')">添加工程项目</button>
 		</div>     
 	<ul class="detailList">
+
 		<li class="listHead">
 			<span class="listOrder">序号</span>
 			<span class="listProName">工程项目内容</span>
@@ -28,18 +32,63 @@
 			<span class="listWorkLoad">人工含量</span>
 			<span class="listOperation">&nbsp;</span>
 		</li>
+
 		<li class="" ng-repeat="list in configDetails">
-			<span class="listOrder">{{list.serial_number}}</span>
+			<span class="listOrder">{{list.serial_number}} &nbsp; </span>
 			<span class="listProName">{{list.construction_description}}</span>
-			<span class="listPos">{{list.position}}</span>
+			<span class="listPos">{{list.position}}
+				
+			</span>
 			<span class="listCraft">{{list.construction_trades_value}}</span>
 			<span class="listUnit">{{list.unit}}</span>
-			<span class="listWorkLoad">{{list.artificial_content}}-</span>
+			<span class="listWorkLoad">{{list.artificial_content}}</span>
 			<span class="listOperation">
-				<button type="button" class="btn btn-info btn-xs">添加</button>
-				<button type="button" class="btn btn-success btn-xs">编辑</button>
-				<button type="button" class="btn btn-danger btn-xs">删除</button>
-			</span>
+				<button type="button" 
+					class="btn btn-info btn-xs"
+					ng-click="AddItemInputShow('secondLevel', $event, list.construction_trades)"
+
+				>添加</button>
+				<button type="button" class="btn btn-success btn-xs" ng-click="itemEdit(list.process_detail_configuration_id)">编辑</button>
+				<button 
+					type="button" 
+					class="btn btn-danger btn-xs"
+					ng-click="itemDelete(list.process_configuration_id, list.process_detail_configuration_id)"
+				>删除</button>
+			</span>	
+				<ul class="subItemListAdd" >					
+					<li>	
+						<form>
+							<span class="listOrder"> &nbsp;</span>
+							<span class="listProName">
+								<img src="img/level-down.png">
+								<input type="text"  name="listProName" required ng-model="items.listProName">
+							</span>
+
+							<span class="listPos">
+								<input type="text" name="listPos" required ng-model="items.listPos">
+							</span>
+							<span class="listCraft">
+								
+								<select name="listCraft" disabled="">
+									<option ng-repeat="item in craftData" value="{{item.id}}">{{item.name}}</option>
+								</select>
+							</span>
+							<span class="listUnit">
+								<input type="text" name="listUnit" required ng-model="items.listUnit">
+							</span>
+							<span class="listWorkLoad">
+								<input type="number" max-length="3" name="listWorkLoad" required ng-model="items.listWorkLoad">
+							</span>
+							<span class="listOperation">
+
+								<input type="button" ng-click="itemAdd($event, list.process_detail_configuration_id)" value="保存" name="" class="btn btn-inline-block" >
+								<input type="button" ng-click="HideItemInputShow($event,  'sub')" name="" value="取消" class="btn" >
+
+							</span>
+						</form>
+					</li>
+				</ul>
+			
 
 			<ul class="" ng-repeat="listSecond in list.children">
 				<li>
@@ -51,11 +100,18 @@
 					<span class="listUnit">{{listSecond.unit}}</span>
 					<span class="listWorkLoad">{{listSecond.artificial_content}}</span>
 					<span class="listOperation">
-						<button type="button" class="btn btn-info btn-xs">添加</button>
-						<button type="button" class="btn btn-success btn-xs">编辑</button>
-						<button type="button" class="btn btn-danger btn-xs">删除</button>
-					</span>
+						<!-- <button type="button" class="btn btn-info btn-xs">添加</button> -->
+						<button type="button" class="btn btn-success btn-xs"
 
+						ng-click="itemEdit(listSecond.process_detail_configuration_id)"
+						
+						>编辑</button>
+						<button 
+							type="button" 
+							class="btn btn-danger btn-xs"
+							ng-click="itemDelete(listSecond.process_configuration_id, listSecond.process_detail_configuration_id)"
+						>删除</button>
+					</span>
 					<ul>
 						<li class="" ng-repeat="listThird in listSecond.children">
 							<span class="listOrder"></span>
@@ -98,7 +154,11 @@
 											<span class="listOperation">
 												<button type="button" class="btn btn-info btn-xs">添加</button>
 												<button type="button" class="btn btn-success btn-xs">编辑</button>
-												<button type="button" class="btn btn-danger btn-xs">删除</button>
+												<button type="button" 
+
+												class="btn btn-danger btn-xs"
+												ng-click="itemDelete()"
+												>删除</button>
 											</span>
 
 										</li>
@@ -110,6 +170,38 @@
 				</li>
 			</ul>
 		</li>	
+
+		<li class="addItem" >
+			<form name="addItemForm" id="addItemForm" novalidate="novalidate" >
+				<span class="listOrder"> &nbsp;</span>
+				<span class="listProName">
+					<input type="text"  name="listProName" required >
+				</span>
+				<span class="listPos">
+					<input type="text" name="listPos" required >
+				</span>
+				<span class="listCraft">
+					<select name="listCraft" >
+
+						<option ng-repeat="item in craftData" value="{{item.id}}">{{item.name}}</option>
+					</select>
+				</span>
+				<span class="listUnit">
+					<input type="text" name="listUnit" required >
+				</span>
+				<span class="listWorkLoad">
+					<input type="number" max-length="3" name="listWorkLoad" required >
+				</span>
+				<span class="listOperation">
+
+					<button  ng-click="itemAdd($event)" value="" name="" class="btn btn-inline-block" >保存</button>
+
+					<button  ng-click="HideItemInputShow($event)"  name="" value="" class="btn" >取消</button>
+
+				</span>
+			</form>
+		</li>
+
 	</ul>
 
 </div>

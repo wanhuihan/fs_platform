@@ -30,7 +30,7 @@ Login page
   right: 0;
   top:0;
   bottom: 0;
-  height: 340px;
+  height: 295px;
   margin: auto;
     .login-form {
         
@@ -65,13 +65,14 @@ Login page
 .login .content .form-title {
   font-weight: 300;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .login .content .form-actions {
   background-color: #fff;
   clear: both;
   border: 0px;
-  border-bottom: 1px solid #eee;
+  // border-bottom: 1px solid #eee;
   padding: 0px 30px 25px 30px;
   margin-left: -30px;
   margin-right: -30px;

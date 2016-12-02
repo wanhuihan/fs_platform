@@ -38,6 +38,7 @@
 		}
 		> li > span {
 			border-bottom:1px solid #eef4f7;
+			height: 40px;
 		}
 		li {
 			font-size: 0;
@@ -52,18 +53,25 @@
 			width: 5%;
 		}
 		.listProName {
-			width:50%;
+			width:40%;
 			text-align: left;
 		}
 		.listPos {
-			width:10%;
+			width:17%;
 			text-align: left;
 		}
 		.listCraft {
-			width:5%;
+
+			width:8%;
+
+			input {
+				width: 60%;
+				text-align: center;				
+			}
 		}
 		.listUnit {
 			width: 5%;
+			// position: relative;
 		}
 		.listWorkLoad {
 			width: 5%;
@@ -128,6 +136,43 @@
 				}
 			}
 		}
+
+		.addItem {
+			display: none;
+			span {
+				position: relative;
+				input {
+					width: 100%;
+				}
+				select {
+					height: 25.63px;
+				}
+				&.listProName, &.listPos {
+					input {
+						width: 50%;
+					}
+				}
+				&.listOperation {
+					input {
+						width: auto;
+					}
+				}
+			}
+		}
+		.subItemListAdd {
+			display: none;
+			.listUnit, .listWorkLoad  {
+				position: relative;
+				input {
+					width: 100%;
+				}
+			}	
+			.listProName {
+				input {
+					width: 50%;
+				}
+			}
+		}
 	}
 }
 
@@ -162,6 +207,20 @@
 					&:hover {
 						background: #eef4f7;
 						cursor: pointer;
+					}
+					&.selected {
+						input {
+							display: block;
+						}
+						.btn-success {
+							display: none;
+						}
+						.quickEditSave {
+							display: inline-block;
+						}
+						.inputEditCancel {
+							display: inline-block;
+						}
 					}
 				}
 				.num {
@@ -245,9 +304,56 @@
 				left:8px;
 				width:50px;
 				box-sizing: border-box;
-				border: 1px solid;
+				border:0;
+				border: 1px solid #ddd;
 				display: none;
+				padding: 0;
+				margin: 0;
+			}
+			div {
+				// border:1px solid #fff;
 			}
 		}
 	}
+}
+
+// popup show
+.ngdialog  {
+	&.processConfigAdd, &.processConfigEdit  {
+		.ngdialog-content {
+			padding-top:30px;
+			width: 500px;
+			.form-horizontal {
+				label {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+
+	&.workerTypeAdd {
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				width: 33.333333%;
+				display: inline-block;
+				h2 {
+					font-size: 15px;
+					margin: 0;
+				}
+				ul {
+					li {
+						width: 100%;
+						font-size: 13px;
+					}
+				}
+			}
+		}
+		#workTypeAddForm {
+			display: none;
+			font-size:13px;
+		}
+	}	
 }

@@ -11,14 +11,18 @@ author: bootply.com
 body, html {
   height: 100%; }
 
-.dashboard .table td {
-  padding: 15px 8px; }
+* {
+  font-family: microsoft yahei; }
 
-.dashboard .table tr:first-child {
-  background: inherit; }
+.logo img {
+  width: 90px; }
+
+.dashboard .table td {
+  padding: 10px 8px; }
 
 .dashboard .table tr td {
-  border-bottom: 1px solid #eef4f7; }
+  border-bottom: 1px solid #eef4f7;
+  vertical-align: middle; }
   .dashboard .table tr td:first-child {
     text-align: center; }
   .dashboard .table tr td:last-child {
@@ -26,9 +30,6 @@ body, html {
 
 .dashboard .table tr th:first-child {
   text-align: center; }
-
-.dashboard .table tr:nth-child(odd) {
-  background: none; }
 
 .dashboard nav.navigation {
   text-align: right; }
@@ -76,7 +77,7 @@ body, html {
   padding: 50px 0 0;
   height: 100%;
   width: 215px;
-  position: relative;
+  position: fixed;
   z-index: 1; }
   .sideBar h2 {
     font-size: 14px;
@@ -191,9 +192,6 @@ a.disabled {
     height: 50px;
     font-size: 50px; }
 
-.pagination a:first-child {
-  border-radius: 15px !important; }
-
 @font-face {
   font-family: 'FontAwesome';
   src: url("../fonts/fontawesome-webfont.eot?v=4.6.3");
@@ -224,7 +222,8 @@ a.disabled {
     text-align: center;
     line-height: 20px; }
   .decorationConfigDetails .detailList > li > span {
-    border-bottom: 1px solid #eef4f7; }
+    border-bottom: 1px solid #eef4f7;
+    height: 40px; }
   .decorationConfigDetails .detailList li {
     font-size: 0; }
     .decorationConfigDetails .detailList li span {
@@ -234,13 +233,16 @@ a.disabled {
   .decorationConfigDetails .detailList .listOrder {
     width: 5%; }
   .decorationConfigDetails .detailList .listProName {
-    width: 50%;
+    width: 40%;
     text-align: left; }
   .decorationConfigDetails .detailList .listPos {
-    width: 10%;
+    width: 17%;
     text-align: left; }
   .decorationConfigDetails .detailList .listCraft {
-    width: 5%; }
+    width: 8%; }
+    .decorationConfigDetails .detailList .listCraft input {
+      width: 60%;
+      text-align: center; }
   .decorationConfigDetails .detailList .listUnit {
     width: 5%; }
   .decorationConfigDetails .detailList .listWorkLoad {
@@ -266,6 +268,26 @@ a.disabled {
       margin-left: 75px; }
     .decorationConfigDetails .detailList > li > ul .fa {
       margin-right: 10px; }
+  .decorationConfigDetails .detailList .addItem {
+    display: none; }
+    .decorationConfigDetails .detailList .addItem span {
+      position: relative; }
+      .decorationConfigDetails .detailList .addItem span input {
+        width: 100%; }
+      .decorationConfigDetails .detailList .addItem span select {
+        height: 25.63px; }
+      .decorationConfigDetails .detailList .addItem span.listProName input, .decorationConfigDetails .detailList .addItem span.listPos input {
+        width: 50%; }
+      .decorationConfigDetails .detailList .addItem span.listOperation input {
+        width: auto; }
+  .decorationConfigDetails .detailList .subItemListAdd {
+    display: none; }
+    .decorationConfigDetails .detailList .subItemListAdd .listUnit, .decorationConfigDetails .detailList .subItemListAdd .listWorkLoad {
+      position: relative; }
+      .decorationConfigDetails .detailList .subItemListAdd .listUnit input, .decorationConfigDetails .detailList .subItemListAdd .listWorkLoad input {
+        width: 100%; }
+    .decorationConfigDetails .detailList .subItemListAdd .listProName input {
+      width: 50%; }
 
 .decorationCraftFee .craftFeeListBox {
   padding-left: 15px; }
@@ -285,6 +307,14 @@ a.disabled {
     .decorationCraftFee .craftFeeListBox table tbody tr:hover {
       background: #eef4f7;
       cursor: pointer; }
+    .decorationCraftFee .craftFeeListBox table tbody tr.selected input {
+      display: block; }
+    .decorationCraftFee .craftFeeListBox table tbody tr.selected .btn-success {
+      display: none; }
+    .decorationCraftFee .craftFeeListBox table tbody tr.selected .quickEditSave {
+      display: inline-block; }
+    .decorationCraftFee .craftFeeListBox table tbody tr.selected .inputEditCancel {
+      display: inline-block; }
     .decorationCraftFee .craftFeeListBox table tbody .num {
       width: 3%; }
     .decorationCraftFee .craftFeeListBox table tbody .craft {
@@ -341,5 +371,150 @@ a.disabled {
     left: 8px;
     width: 50px;
     box-sizing: border-box;
-    border: 1px solid;
-    display: none; }
+    border: 0;
+    border: 1px solid #ddd;
+    display: none;
+    padding: 0;
+    margin: 0; }
+
+.ngdialog.processConfigAdd .ngdialog-content, .ngdialog.processConfigEdit .ngdialog-content {
+  padding-top: 30px;
+  width: 500px; }
+  .ngdialog.processConfigAdd .ngdialog-content .form-horizontal label, .ngdialog.processConfigEdit .ngdialog-content .form-horizontal label {
+    font-size: 13px; }
+
+.ngdialog.workerTypeAdd ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .ngdialog.workerTypeAdd ul li {
+    width: 33.333333%;
+    display: inline-block; }
+    .ngdialog.workerTypeAdd ul li h2 {
+      font-size: 15px;
+      margin: 0; }
+    .ngdialog.workerTypeAdd ul li ul li {
+      width: 100%;
+      font-size: 13px; }
+
+.ngdialog.workerTypeAdd #workTypeAddForm {
+  display: none;
+  font-size: 13px; }
+
+.main .memberSection .quickSearch .control-label {
+  padding-top: 7px; }
+
+.productSection .nav.nav-pills {
+  padding: 0 15px 15px; }
+
+.productSection .nav li:hover {
+  cursor: pointer; }
+
+.productSection .mainContent {
+  position: relative; }
+  .productSection .mainContent:after {
+    content: "";
+    display: block;
+    clear: both; }
+  .productSection .mainContent .subleftSideMenu .subNav {
+    border: 1px solid #ddd;
+    height: 100%; }
+    .productSection .mainContent .subleftSideMenu .subNav h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      padding: 12px 15px;
+      background: #ddd;
+      position: relative; }
+      .productSection .mainContent .subleftSideMenu .subNav h2 #addCategory {
+        right: 15px;
+        position: absolute; }
+    .productSection .mainContent .subleftSideMenu .subNav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li > div {
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        padding: 5px 15px;
+        position: relative; }
+        .productSection .mainContent .subleftSideMenu .subNav ul li > div .operation {
+          opacity: 0;
+          position: absolute;
+          right: 0;
+          margin: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 15px; }
+          .productSection .mainContent .subleftSideMenu .subNav ul li > div .operation i {
+            font-size: 15px; }
+        .productSection .mainContent .subleftSideMenu .subNav ul li > div input[disabled], .productSection .mainContent .subleftSideMenu .subNav ul li > div input:disabled {
+          border: 0;
+          background: none; }
+        .productSection .mainContent .subleftSideMenu .subNav ul li > div:hover .operation {
+          opacity: 1; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li ul.subCate.active {
+        display: block; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li ul.subCate ul li > div {
+        padding-left: 45px; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li ul li > div {
+        padding: 5px 30px;
+        border-bottom: 1px solid #eee; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li .fa {
+        font-size: 20px;
+        vertical-align: middle; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li.stretchOn .subCate {
+        display: block; }
+      .productSection .mainContent .subleftSideMenu .subNav ul li.stretchOff .subCate {
+        display: none; }
+  .productSection .mainContent .productList .quickSearch .form-control {
+    width: auto;
+    display: inline-block; }
+  .productSection .mainContent .productList .quickSearch .form-group {
+    display: inline-block; }
+  .productSection .mainContent .productList .table td {
+    padding: 5px 8px; }
+
+.productDetails .list-group li, .productsAdd .list-group li {
+  list-style: none;
+  font-size: 12px; }
+  .productDetails .list-group li span, .productsAdd .list-group li span {
+    color: #bbb; }
+  .productDetails .list-group li p, .productsAdd .list-group li p {
+    font-size: 14px; }
+
+.productDetails .imageList ul, .productsAdd .imageList ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  .productDetails .imageList ul li, .productsAdd .imageList ul li {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    box-sizing: border-box; }
+    .productDetails .imageList ul li img, .productsAdd .imageList ul li img {
+      width: 100%; }
+  .productDetails .imageList ul:after, .productsAdd .imageList ul:after {
+    clear: both;
+    content: "";
+    display: block; }
+
+.productDetails .imageList h4, .productsAdd .imageList h4 {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px; }
+
+.productDetails .btnGroup, .productsAdd .btnGroup {
+  text-align: right; }
+
+.pagination a:first-child {
+  border-radius: 15px !important; }
+
+.pagination.pager {
+  display: inline-block; }
+  .pagination.pager .form-control {
+    display: inline-block;
+    line-height: 22px;
+    width: auto; }
+  .pagination.pager li a.form-control {
+    border-radius: 15px; }

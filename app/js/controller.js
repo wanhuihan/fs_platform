@@ -1,149 +1,25 @@
-var app = angular.module('fs', ['ngRoute','ui.router']);
-app.config(function($stateProvider, $urlRouterProvider){
 
-    $urlRouterProvider.when("/", "dashboard")
-    // $urlRouterProvider.otherwise("dashboard/login");
-    $stateProvider.state('dashboard', {
-        url: '/dashboard',
-        resolve: {
-            getNavBarData : function($http) {
-                return $http({method:'post', url: "http://192.168.0.201:8080/decoration_manage/system/selectAllMenuList", params: {
-                    token: '9F1257D54952E9E502BE705D80F77C86',
-                }})
-            },
-            getCraftData: function($http) {  
-                return $http.post("http://192.168.0.201:8080/decoration_manage/common/selectWorkTypesList")              
-            },
 
-            getCityData: function($http) {  
-                return $http.post("http://192.168.0.201:8080/decoration_manage/common/selectAllCityList")              
-            },
-
-            // craft fee function
-            getconfigData: function($http) {
-                return $http.post("http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList")
-            }
-        },
-
-        views: {
-            'topNav': {
-                templateUrl: 'templates/header.html',
-                controller: 'navigation'
-                },
-        },
-    })
-
-    $stateProvider.state('dashboard.main', {
-        url: '/main',
-        views: {
-            'body@': {
-                'templateUrl': 'templates/dashboard.html',           
-            },
-            'body@topNav': {
-                'templateUrl': 'templates/header.html'
-            }
-        }
-    })   
-
-    $stateProvider.state('dashboard.menu_khgl', {
-        url: '/menu_khgl',
-        views: {
-            'sideBar@': {
-                templateUrl: 'templates/sideBar.html',  
-                controller: 'sideBar',         
-            },
-
-        }, 
-    })
-
-    $stateProvider.state('dashboard.menu_zxgl', {
-        url: '/menu_zxgl',
-        views: {
-            'sideBar@': {
-                templateUrl: 'templates/sideBar.html',  
-                controller: 'sideBar',         
-            },
-            // 'mainSection@': {
-            //     templateUrl: 'tmeplates',
-            // },                       
-        }, 
-    }) 
-
-    $stateProvider.state('dashboard.menu_gxpz', {
-        url: '/menu_gxpz',
-        views: {
-            'sideBar@': {
-                templateUrl: 'templates/sideBar.html',  
-                controller: 'sideBar'    
-            },
-            'mainSection@': {
-                templateUrl: 'templates/decoration_config.html',
-                // controller: 'test'
-                controller: 'process_config'
-            }
-        }, 
-    })
-
-    $stateProvider.state('dashboard.menu_gzfy', {
-
-        url: '/menu_gzfy?pageNum&pageCount&pageSize&cityCode&craftId&cityName',
-
-        views: {
-            'sideBar@': {
-                templateUrl: 'templates/sideBar.html',  
-                controller: 'sideBar'    
-            },
-            'mainSection@': {
-                templateUrl: 'templates/decoration_craft_fee.html',
-                controller: 'craft_fee'
-            }
-        }, 
-    })
-
-})
-
-app.controller("fs", function($scope, $state) {
-
-    $scope.fs = {
-        errorMsgShow : false,
-        errorMsg: ''
-        // headerBarShow: '',
-        // sideBarShow: '',
-        // mainSectionShow: ''
-    }
-
-    $scope.doLogin = function() {
-        $scope.loginFormShow = false;
-        $scope.headerBarShow = true;
-        $scope.sideBarShow = true;
-        $scope.mainSectionShow = true;
-        window.localStorage.isLog = 'islogin';
-        $state.go('dashboard',null,{
-            reload:false,
-        });        
-    } 
-      // is login
-      if (window.localStorage.isLog) {
-        $scope.loginFormShow = false;
-        $scope.headerBarShow = true;
-        $scope.sideBarShow = true;
-        $scope.mainSectionShow = true;     
-      } else {
-        $scope.loginFormShow = true;
-      }
-})
 
 app.controller("navigation", function($scope, getNavBarData) {
     $scope.name = "Jack";
-    $scope.topNav = getNavBarData.data.datas;
-    // console.log($scope.topNav)
+    $scope.topNav = getNavBarData.data.data.datas;
+    // console.log(getNavBarData)
 })
 
+
 app.controller("sideBar", function($scope, getNavBarData, $location) {
-    $scope.topNav = getNavBarData.data.datas;
+
+    console.log(getNavBarData)
+
+    $scope.topNav = getNavBarData.data.data.datas;
+
     var topNav = $scope.topNav;
+
     var current = $location.path().split('/')[2];
-    // console.log(current);
+
+    console.log(current);
+
     var currentObj = new Object();
 
     function getParentId(o) {
@@ -163,12 +39,8 @@ app.controller("sideBar", function($scope, getNavBarData, $location) {
                 } else {
                     if (o[i].id == current) {
                         parentId = o[i].ancestor;
-                        // console.log(o[i].ancestor);
-                        // console.log(parentId)
-                        for (var b = 0; b < topNav.length; b++) {
-                            // console.log(topNav[b].id +'=>'+ parentId);                            
+                        for (var b = 0; b < topNav.length; b++) {                            
                             if (topNav[b].id == parentId) {
-                                // console.log(topNav[b])
                                 currentObj = topNav[b];  
                                 break;
                             }     
@@ -178,84 +50,510 @@ app.controller("sideBar", function($scope, getNavBarData, $location) {
             }
         }
     }
+
     getParentId($scope.topNav);
+
     $scope.cur = currentObj.id;
+
     $scope.currentSubCat = currentObj.children;
+
 })
 
-app.controller('process_config', function($scope, $http, getCraftData) {   
+// 工序配置
 
-    console.log(getCraftData.data.datas)
-    // $scope.craftData = getCraftData.data.datas;
+app.controller('process_config', function($scope, $http, $location, getRuleData, getCraftData, $stateParams, ngDialog) {   
+    // console.log(getCraftData.data.datas)
+
+    $scope.craftData = getCraftData.data.data.datas;
 
     $scope.construction_trades = '';
 
-    $http.post("http://192.168.0.201:8080/decoration_manage/decoration/processConfiguration/selectList")
-    .success(function(response) {
-            // console.log(response)
+    function getConfigList() {
+
+        $http.post(g.host+"/decoration_manage/decoration/processconfiguration/list")
+        .success(function(response) {
+            console.log(response);
             $scope.fs.errorMsgShow = true;
-            $scope.data = response.datas;
-            // console.table($scope.data)
-    })
+
+            $scope.data = response.data.datas;
+
+        })        
+    }
+
+    getConfigList();
+    // console.log(getRuleData)
+    $scope.processConfig = {
+
+        edit: {
+
+            data: {
+                projectName: '',
+                craftId: '',
+                files: '',
+                unit: '',
+                briefInfo: '',
+                calRegulation: '',
+                processId: '', 
+                role: '',
+                roleData: getRuleData.data.data.datas,
+                // craftData: $scope.craftData
+            },
+
+            showPop: function(processId) {
+
+                $http({
+                    method: 'post',
+                    url: g.host+'/decoration_manage/decoration/processconfiguration/view',
+
+                    params: {
+                        processConfigurationId: processId
+                    }
+
+                }).success(function(data) {
+
+                    if (g.getData(data)) {
+
+                        var dataGroup = data.data.datas;
+
+                        // console.log(dataGroup);
+
+                        $scope.processConfig.edit.data.projectName = dataGroup.projectName;
+                        $scope.processConfig.edit.data.craftId = dataGroup.constructionTrades.toString();
+                        $scope.processConfig.edit.data.files = dataGroup.acceptanceBasis;
+                        $scope.processConfig.edit.data.briefInfo = dataGroup.constructionDescription;
+                        $scope.processConfig.edit.data.unit = dataGroup.unit;
+                        $scope.processConfig.edit.data.calRegulation = dataGroup.engineeringCalculationRules;
+                        $scope.processConfig.edit.data.processId = dataGroup.processConfigurationId;
+                        $scope.processConfig.edit.data.role =  dataGroup.roleCode;
+
+                        // console.log(typeof $scope.processConfig.edit.data.role)
+
+                        ngDialog.open({
+                            template:'templates/process_config_edit.html',
+                            className: 'ngdialog-theme-default processConfigEdit',
+                            scope: $scope,
+                        })
+                        // console.log($scope.processConfig.edit.data)
+                    }
+
+                })
+            },
+
+
+        },
+
+
+        delete: function(id) {
+            // console.log(id)
+            $http({
+                method: 'post',
+                url: g.host+'/decoration_manage/decoration/processconfiguration/delete',
+                params: {
+                    token: localStorage.fs_token,
+                    processConfigurationId: id
+                }    
+            }). success(function(data) {
+                // console.log(data);
+                getConfigList();
+            })
+        },
+        add: {
+            showPop:  function(e) {
+                // console.log(12);
+                ngDialog.open({
+                    template:'templates/process_config_add.html',
+                    className: 'ngdialog-theme-default processConfigAdd',
+                    scope: $scope,
+                })
+
+            },
+            data: {
+                projectName: '',
+                craftId: '',
+                files: '',
+                unit: '',
+                briefInfo: '',
+                calRegulation: '',
+                role: '',
+                roleData: getRuleData.data.data.datas
+            },
+
+            save: function(e) { 
+
+            }
+
+        }
+    }
+
+    // 判断添加工序未上传附件返回的数据并还原popup
+
+    // console.log($location.$$search.status)
+
+    if ($location.$$search.status == -1) {
+
+        $scope.processConfig.add.data.briefInfo = $location.$$search.constructionDescription;
+        $scope.processConfig.add.data.calRegulation = $location.$$search.engineeringCalculationRules;
+        $scope.processConfig.add.data.craftId = $location.$$search.constructionTrades;
+        $scope.processConfig.add.data.role = $location.$$search.roleCode;
+        $scope.processConfig.add.data.projectName = $location.$$search.projectName;
+        $scope.processConfig.add.data.unit = $location.$$search.unit;
+
+        var reOpen = ngDialog.open({
+            template:'templates/process_config_add.html',
+            className: 'ngdialog-theme-default processConfigAdd',
+            scope: $scope,
+            controller: function() {
+                $("body").on("load", '#addProForm', function() {
+                    return;
+                })
+            }
+        })  
+
+        reOpen.closePromise.then(function() {
+            // console.log(123)
+        })   
+
+        // console.log(reOpen.ngdialog1)  
+    }
 })
 
 
-app.controller("craft_fee", function($location, $scope, $http, getCityData, getCraftData, $timeout, $q, $stateParams, getconfigData) {
-   
+/*
+ * 工序配置详情页  
+*/
 
-    $scope.craftData = getCraftData.data.datas;
+app.controller("process_config_detail", function($scope, $http, getCraftData, $stateParams, ngDialog) {
+
+    var process_configuration_id = $stateParams.processId;
+
+    // 获取工种数据
+    $scope.craftData = getCraftData.data.data.datas;
+
+    // 隐藏添加项目表单
+    $scope.showAddItemInput = false;
+
+    // 获取列表
+    function getItemList() {
+
+        $http.post(g.host+"/decoration_manage/decoration/processconfigurationdetail/list?processConfigurationId="+process_configuration_id)
+        
+        .success(function(data) {
+
+            console.log(data)
+
+            $scope.configDetails = data.data.datas;
+
+            if (g.getData(data)) {
+
+                $scope.configDetails = data.data.datas;
+
+            } else {
+
+                alert(data.msg);
+                return false;
+            }
+
+        })        
+    }
+
+    // 获取Input值生成Json串
+
+    $scope.inputValToJson = function(input) {
+
+        var data = {};
+
+        for (var i = 0; i < input.length; i++) {
+
+            if (input[i].value == '') {
+                return false;
+            } 
+
+           data[angular.element(input[i])[0].name] = input[i].value;
+
+        }
+        return data;
+    }
+
+    getItemList();
+
+    // 返回上一页
+    $scope.back2LastPage = function() {
+
+        history.back(-1);
+
+    }
+
+    // 添加显示项目form
+    $scope.AddItemInputShow = function(target, e, craftId) {
+ 
+        var t = target;
+
+        // 第一级栏目
+        if (t == 'topLevel') {
+
+            angular.element(document.querySelector(".addItem"))[0].style.display = "block";
+        }
+
+        // 第二级栏目
+        if (t == 'secondLevel') {
+
+            var element = angular.element(e.target.parentElement)[0].nextElementSibling;
+
+            element.style.display = 'block';
+
+            // set default craft value when add sub item
+
+            var options = angular.element(element).find('select')[0].options;
+
+            for (var i = 0; i < options.length; i++) {
+
+                if (options[i].value == craftId) {
+
+                    options[i].selected = true;
+
+                }
+            }
+
+        }      
+    }
+
+    // 隐藏表单并清空所填值
+    $scope.HideItemInputShow = function(e, t) {
+
+        // console.log(e.target.parentElement.parentElement.parentElement.parentElement);
+        if (t) {
+
+            var ul = e.target.parentElement.parentElement.parentElement.parentElement;
+
+        } else {
+
+            var ul = e.target.parentElement.parentElement.parentElement;
+
+        }
+        
+        ul.style.display = 'none';
+
+        angular.element(e.target.form)[0].reset();
+    }
+
+
+    // 添加工程项目方法
+
+    $scope.itemAdd = function(e, itemId) {
+
+        var input = angular.element(e.target.form).find("input");
+
+        var select = angular.element(e.target.form).find("select");
+
+        var data = $scope.inputValToJson(input);
+
+        // console.log(data);
+        if (!data) {
+            return false;
+        }
+        
+        var dom = e;
+
+        data.listCraft = select[0].value;
+        // console.log(data)
+
+        $http({
+            method:'post', 
+            url: g.host+"/decoration_manage/decoration/processconfigurationdetail/add", 
+            params: {
+
+                'token' : localStorage.fs_token,
+
+                'processConfigurationId' : process_configuration_id,
+
+                'parentId' :  itemId,
+
+                'constructionDescription' : data.listProName,
+
+                'position' :  data.listPos,
+
+                'constructionTrades' : data.listCraft, 
+
+                'unit' : data.listUnit,
+
+                'artificialContent' : data.listWorkLoad,
+
+                'serialNumber' : ''
+            }
+
+        }).success(function(data) {
+
+            if (g.getData(data)) {
+
+                $scope.HideItemInputShow(dom);
+                // 添加成功后重新获取列表数据列表
+                getItemList();
+            }
+
+        })
+    }
+
+
+    $scope.itemDelete = function(processId, detailId) {
+
+        $http({
+            method: 'post',
+            url: g.host + '/decoration_manage/decoration/processconfigurationdetail/delete',
+            params: {
+                token: localStorage.fs_token,
+                processConfigurationId: processId,
+                processDetailConfigurationId: detailId
+            }
+        }).success(function(data) {
+            // console.log(data)
+            if ( data.code == 0) {
+                // alert('操作成功');
+                getItemList(); 
+            }
+        })
+
+        // console.log(arguments)
+    }
+    
+    $scope.itemEditData = {};
+
+    $scope.itemEdit = function(detailId) {
+
+        // console.log(detailId);
+
+        $http({
+            method: 'post',
+            url: g.host+'/decoration_manage/decoration/processconfigurationdetail/view',
+            params: {
+                processDetailConfigurationId: detailId
+            }
+        }).success(function(data) {
+
+            var d = data.data.datas;
+
+             $scope.itemEditData.projectName = d.constructionDescription;
+
+             $scope.itemEditData.position = d.position;
+
+             $scope.itemEditData.craftId = d.constructionTrades.toString();
+
+             $scope.itemEditData.unit = d.unit;
+
+             $scope.itemEditData.workLoad = d.artificialContent;
+
+            // console.log(data.data.datas);
+
+        })
+
+        ngDialog.open({
+
+            template:'templates/process_config_details_edit.html',
+
+            className: 'ngdialog-theme-default processConfigDetailsEdit',
+
+            scope: $scope,
+
+        })
+    }
+
+    $scope.itemEditSubmit = function() {
+
+        // console.log($scope.itemEditData)
+
+        $http({
+            method: 'post',
+
+            url : g.host + '/decoration_manage/decoration/processconfigurationdetail/update',
+            
+            params: $scope.itemEditData,
+
+        }).success(function(data) {
+
+            console.log(data);
+
+        })
+    }
+
+})
+
+
+app.controller("craft_fee", function($location, $scope, $http, getCityData, getCraftData, $timeout, $q, $stateParams, getconfigData) {  
+ 
+    $scope.craftData = getCraftData.data.data.datas;
 
 /*
  * get the cities list function, no need remove 
  * ================GET CITY LIST START==================
 */
     
-    $scope.cityData = getCityData.data.datas;
+    // console.log(getCityData);
+
+    $scope.cityData = getCityData.data.data.datas;
 
     $scope.cities = new Array();
+
     $scope.name = "";
-    for (var i in $scope.cityData) {
-        var letter = $scope.cityData[i];
-        // console.log(letter)
-        for (var a = 0; a < letter.length; a++) {
-            $scope.cities.push({name:letter[a].city_name, cityCode: letter[a].city_code})
+
+    for (var i = 0; i < $scope.cityData.length; i++) {
+        
+        // console.log($scope.cityData[i].value);
+
+        var cityLetter = $scope.cityData[i].value;
+
+        for (var a in cityLetter) {
+            // console.log(cityLetter[a])
+            $scope.cities.push({name:cityLetter[a].cityname, cityId: cityLetter[a].cityId})
         }
-    }    
+
+    }  
 
     $scope.cityListShowVal = false; 
     // $scope.cityCode = '';
 
     $scope.cityListShow = function() {
+
         $scope.cityListShowVal = true;
     }
 
     $scope.cityListHide = function() {
+
         var HideCityListDelay = $timeout(function() {
+
             $scope.cityListShowVal = false;
+
             $timeout.cancel(HideCityListDelay);
 
         },200) 
     }
 
     $scope.getCityCode = function(e) {
+
         $scope.name = e.item.name;
-        $scope.terms.cityCode = e.item.cityCode;
+
+        $scope.terms.cityId = e.item.cityId;
+
         // console.log(e.item.cityCode)
+
         angular.element(document.querySelector('.citySelectInput')).attr("city-code",(e.item.cityCode));
-        $scope.terms.cityCode = e.item.cityCode;
+        // $scope.terms.cityCode = e.item.cityCode;
     }
 
     $scope.cityDefaultValSet = function(e) {
         // console.log(e)
         if ($scope.name == '') {
+
             angular.element(document.querySelector('.citySelectInput')).attr("city-code",(''));
+            
             $scope.terms.cityCode = '';
         }
     }
+
+
 /*
  * get the cities list function, no need remove 
  * ================GET CITY LIST END==================
 */
+
 
     $scope.reSetPageSelect = function(data) {
         var pNum = new Array();
@@ -265,27 +563,31 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
         return pNum;
     }
 
-    $scope.pageSelect = $scope.reSetPageSelect(getconfigData.data.pageCount);
+    $scope.pageSelect = $scope.reSetPageSelect(getconfigData.data.data.pageCount);
+    
     $scope.currentPageNum = '1';
-    // console.log(typeof $scope.reSetPageSelect(getconfigData.data.pageCount));
-
 
     $scope.pagination = {
-        pageCount: getconfigData.data.pageCount,
-        pageNumber: getconfigData.data.pageNumber,
+
+        pageCount: getconfigData.data.data.pageCount,
+
+        pageNumber: getconfigData.data.data.pageNumber,
+
         pageSize: '20',
-        total: getconfigData.data.total,
+
+        total: getconfigData.data.data.total,
         // pageSelect: $scope.reSetPageSelect(getconfigData.data.pageCount),
         lastPageBtnActive: false,
+
         nextPageBtnActive: true,
     }
-
-    // console.log($scope.pagination.pageNumber) 
     
-    $scope.data = getconfigData.data.datas;
-    console.log($scope.data);
+    $scope.data = getconfigData.data.data.datas;
+
+    // console.log($scope.data.data);
+
     $scope.terms = {
-        cityCode: '',
+        cityId: '',
         cityName: '',
         craftId: '',   
     }
@@ -293,7 +595,7 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
     // console.log(getconfigData)
     $scope.pageFun = function(e) {
 
-         console.log(typeof e)
+         // console.log(typeof e)
 
          // return;
         if (typeof e == 'string') {
@@ -398,63 +700,79 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
         }
     }
 
-
     $scope.getcraftFee = function(obj) {
 
         $http({
             method: 'post',
-            url: "http://192.168.0.201:8080/decoration_manage/decoration/workTypeExpense/selectList",
+            url: g.host+"/decoration_manage/decoration/laborexpense/list",
             params: obj
         }).success(function(r) {
-            // console.log(r)
-            $scope.data = r.datas;
-            $scope.pagination.pageCount = r.pageCount;
-            $scope.pagination.pageNumber = r.pageNumber;
+            // console.log(r);
+            $scope.data = r.data.datas;
+            $scope.pagination.pageCount = r.data.pageCount;
+            $scope.pagination.pageNumber = r.data.pageNumber;
             // $scope.pagination.pageSelect = $scope.reSetPageSelect(r.pageCount);
-            $scope.pageSelect = $scope.reSetPageSelect(r.pageCount);
-            $scope.currentPageNum = r.pageNumber.toString();
+            $scope.pageSelect = $scope.reSetPageSelect(r.data.pageCount);
+            $scope.currentPageNum = r.data.pageNumber.toString();
             // console.log($scope.pagination.pageCount)
         })
     }
 
+
+
     // quick edit details
-    $scope.quickEdit = {
+    // $scope.quickEdit = {
 
-        quickEditFun: function(e) {
-            // console.log(e.target.attributes.data.value);
-            var feeId = e.target.attributes.data.value;
-            console.log(angular.element(document.querySelector("#work_area_"+feeId))[0].value);
+    //     saveActive: false,
+    //     editData: {
+    //         work_area: '',
+    //         rate: '',
+    //         id: ''
+    //     }, 
 
-            angular.element(document.querySelector("#quickEditFun_"+feeId))[0].style.display = 'none';
-            angular.element(document.querySelector("#quickEditSave_"+feeId))[0].style.display = 'inline-block';
-            angular.element(document.querySelector("#inputEditCancel_"+feeId))[0].style.display = 'inline-block';
+    //     quickEditFun: function(e, n) {
 
-            // console.log(angular.element(document.querySelector("#quickEditFun_"+feeId)))
-        },
+    //         e.path[3].className = 'selected';
+    //         this.editData.work_area = angular.element(document.querySelector("#work_area_"+n))[0];
+    //         this.editData.rate = angular.element(document.querySelector("#rate_"+n))[0];
+    //         this.editData.id = angular.element(document.querySelector("#labor_expense_statement_id_"+n))[0];
+    //     },
 
-        quickEditSave: function(e) {
-            console.log(e)
-        },
+    //     quickEditSave: function(e, n) {
 
-        inputEditCancel: function(e) {
-            console.log(e)
+    //         e.path[3].className = '';
 
-        }
-    }
+    //         $http({
+    //             method: 'post',
+    //             url: g.host+"/decoration_manage/decoration/laborExpenseStatement/update",
+    //             params: {
+    //                 token: window.localStorage.fs_token,
+    //                 workArea: this.editData.work_area.value,
+    //                 rate: this.editData.rate.value,
+    //                 laborExpenseStatementId: angular.element(document.querySelector("#labor_expense_statement_id_"+n))[0].value
+    //             }
+    //         }).success(function(data) {
+    //             console.log(data);
+    //             if (data.success) {
+    //                 $scope.pageFun('btn btn-default quickSearchCheck');
+    //             } else {
+    //                 alert(data.msg);
+    //                 return;
+    //             }
+                
+    //         })
+    //     },
 
-    /*
-     * 通过id来查找相对应的id的值 拼起来传给后台    
-    */
+    //     inputEditCancel: function(e) {
+    //         this.editData.work_area.value = this.editData.work_area.attributes.data.value;
+    //         this.editData.rate.value = this.editData.rate.attributes.data.value;
+    //         e.path[3].className = '';
+    //     }
+    // }
 
 })
 
 
 
-var g = {
-    error: {
 
-        _CONNECTIVE_ERROR: '数据库连接出错，请稍后再试',
-        _JS_FUNCTION_ERROR: 'Javascript代码错误',
 
-    }
-}

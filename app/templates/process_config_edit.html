@@ -1,0 +1,92 @@
+<form 
+	class="form-horizontal" 
+	role="form" 
+	name="addProcessConfig" 
+	id="addProForm" 
+	novalidate 
+
+	method="post" 
+	action="http://192.168.0.224:8080/decoration_manage/decoration/processconfiguration/update?token="
+	enctype="multipart/form-data"	
+>
+  <div class="form-group">
+    <label for="projectName" class="col-sm-2 control-label">工序名称</label>
+    <div class="col-sm-10">
+      <input type="text" name="projectName" class="form-control" id="projectName" placeholder="" 
+      ng-model="processConfig.edit.data.projectName"
+      required
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="role" class="col-sm-2 control-label">角色</label>
+    <div class="col-sm-10">
+        <select class="form-control" 
+        	required 
+        	name="roleCode" 
+        	ng-model="processConfig.edit.data.role">
+            <option value="">所有</option>
+            <option ng-repeat="roleItem in processConfig.edit.data.roleData" 
+                    value="{{roleItem.id}}">
+                {{roleItem.name}}
+            </option>
+        </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="craftId" class="col-sm-2 control-label">施工工种</label>
+    <div class="col-sm-10">
+        <select class="form-control"        	 
+        	name="constructionTrades" 
+        	required
+        	ng-model="processConfig.edit.data.craftId">
+            <option value="">所有</option>
+            <option ng-repeat="craftItem in craftData" 
+                    value="{{craftItem.id}}">
+                {{craftItem.name}}
+            </option>
+        </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="proofFile" required class="col-sm-2 control-label">验收依据</label>
+    <div class="col-sm-10">
+
+		<input type="file" name="files" id="files" 	
+		fileread = "processConfig.edit.data.files"
+		accept=".xls,.doc,.txt,.pdf, docx, .xlsx"
+		>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="unit" class="col-sm-2 control-label">单位</label>
+    <div class="col-sm-10">
+      <input required type="text" name="unit" class="form-control" id="unit" placeholder="" ng-model="processConfig.edit.data.unit">
+    </div>
+  </div>  
+  <div class="form-group">
+    <label for="briefInfo" class="col-sm-2 control-label">施工内容简介</label>
+    <div class="col-sm-10">
+		<textarea required ng-model="processConfig.edit.data.briefInfo" class="form-control" rows="3" name="constructionDescription" id="briefInfo"></textarea>
+    </div>
+  </div> 
+  <div class="form-group">
+    <label for="calRegulation" class="col-sm-2 control-label">工程量计算规则</label>
+    <div class="col-sm-10">
+		<textarea required class="form-control" rows="3" name="engineeringCalculationRules" id="calRegulation" ng-model="processConfig.edit.data.calRegulation"></textarea>
+    </div>
+  </div>  
+  <input type="hidden" name="processConfigurationId" id="processConfigurationId" value="{{processConfig.edit.data.processId}}">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" 
+      	class="btn btn-success btn-md"
+      	ng-disabled="!addProcessConfig.$valid"
+      >确认添加</button>
+    </div>
+  </div>
+
+</form>

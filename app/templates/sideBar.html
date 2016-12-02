@@ -4,7 +4,7 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title"><a>{{item.text}}-{{item.id}}-</a></h4>
+				<h4 class="panel-title"><a ui-sref-active="active" ui-sref="dashboard.{{item.id}}">{{item.text}}</a></h4>
 			</div>	
 
 			<div class="" ng-if="item.hasChildren">	
@@ -12,7 +12,7 @@
 					<ul>
 						<li ng-repeat="i in item.children">
 							
-							<a ui-sref-active="active" ui-sref="dashboard.{{i.id}}">{{i.text}}-{{item.id}} = {{i.ancestor}}</a>
+							<a ui-sref-active="active" ui-sref="dashboard.{{i.id}}">{{i.text}}</a>
 						</li>	
 					</ul>
 				</div>		
@@ -20,4 +20,5 @@
 			<div class="grayLine"></div>  					
 		</div>
 	</div>
+	
 </section>

@@ -1,0 +1,167 @@
+
+<div class="productsAdd">
+	
+	<form method="post" name="productDetails" id="productDetails" ng-submit="proAddSubmit()">	
+		<div class="row" >
+			
+			<div class="col-md-6">
+				
+				<ul class="list-group">
+					<li>
+						<span>商品名称</span>
+						<p>
+						<input type="text" 
+						class="form-control" 
+						
+						ng-model="data.name"
+						name="name"></p>
+					</li>
+					<li>
+						<span>商品编号</span>
+						<p>
+							<input type="text" class="form-control" 
+							
+							name="materialCode" ng-model="data.number">
+						</p>
+					</li>
+					<li>
+						<span>商品型号</span>
+						<p>
+							<input type="text" ng-model="data.model" name="model" class="form-control">
+						</p>
+					</li>
+					<li>
+						<span>商品分类</span>
+							<p>						
+
+								<select  name="level1" ng-change="catChange(1)" ng-model="data.cat.level1.id">
+									<option ng-repeat="item in catData" data="{{item.ddKey}}" value="{{item.ddId}}" >
+										{{item.ddValue}}
+									</option>
+
+								</select>
+
+								<select name="level2"  ng-change="catChange(2)" ng-model="data.cat.level2.id">
+									<option ng-repeat="item in data.cat.level2.list" data="{{item.level}}" value="{{item.ddId}}" >
+										{{item.ddValue}}
+									</option>
+								</select>
+
+								<select name="level3" ng-model="data.cat.level3.id" ng-change="catChange(3, $event)">
+									<option ng-repeat="item in data.cat.level3.list" data="{{item.level}}" value="{{item.ddId}}" >
+										{{item.ddValue}}
+									</option>
+								</select>
+
+							</p>
+					</li>
+
+					<li>
+
+						<span>商品品牌</span>
+						<p>
+						<select ng-model="data.brandCode" class="form-control">
+							<option ng-repeat="item in brandList" value="{{item.product_brand_code}}">{{item.ch_name}}</option>
+						</select>{{productDetailData.brandName}}
+						
+					</li>
+					<li>
+						<span>商品供应商</span>
+						<p>
+							<select class="form-control" name="supplier" ng-model="data.supplierId">
+								<option ng-repeat="item in supplier" value="{{item.supplier_id}}">{{item.supplier_name}}</option>
+							</select>
+						</p>
+					</li>															
+				</ul>
+			</div>
+
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li>
+						<span>商品单价</span>
+						<p>	
+							<input class="form-control" ng-model="data.price"  type="text"  name="price">
+
+						</p>
+					</li>
+					<li>
+						<span>商品单位</span>
+						<p>
+							<input class="form-control"  type="text" ng-model="data.unit" name="standard">
+						</p>
+					</li>					
+					<li>
+						<span>商品规格</span>
+						<p>
+							<input class="form-control"  type="text" ng-model="data.specifications" name="standard">
+						</p>
+					</li>
+
+					<li>
+						<span>设计师</span>
+						<p>
+							<select ng-model="data.roleCode">
+								<option ng-repeat="item in roleData" value="{{item.id}}">{{item.name}}</option>
+							</select>
+						</p>
+					</li>					
+					<li>
+						<span>施工阶段</span>
+						<p>
+						<span ng-repeat="item in labelList" >
+
+							<input type="checkbox" value="{{item.ddKey}}" id="{{item.ddId}}" name="label" ng-click="labelSelect($event, item.ddKey)"> {{item.selected}}
+							<label for="{{item.ddId}}">{{item.ddValue}}</label>
+						</span>
+
+						</p>
+					</li>
+
+					<li>
+						<span>备注 - {{testlabel}}</span>
+						<p>
+							<input type="text" class="form-control"   ng-model="data.remark" name="remark">
+						</p>
+					</li>															
+				</ul>		
+			</div>
+
+		</div>
+
+		<div class="imageList">
+			<h4>商品图片</h4>
+			<ul class="">
+				<li>
+					<img src="http://placehold.it/150x150">
+				</li>
+				<li>
+					<img src="http://placehold.it/150x150">
+				</li>
+				<li>
+					<img src="http://placehold.it/150x150">
+				</li>
+				<li>
+					<img src="http://placehold.it/150x150">
+				</li>
+				<li>
+					<img src="http://placehold.it/150x150">
+				</li>												
+			</ul>
+			
+		</div>
+
+		<div class="btnGroup">
+
+			<button class="btn btn-primary" type="submit">
+				保存
+			</button>
+
+			<button class="btn btn-default" ng-click="PopupRemove('productAdd')">
+				关闭
+			</button>
+
+		</div>
+	</form>	
+</div>
+			

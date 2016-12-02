@@ -31,7 +31,7 @@
                         >
                         <div class="cityList" ng-show="cityListShowVal" >
                             <ul>
-                                <li ng-repeat="item in cities | filter: {name}" class="citySelectItem" data-name="{{item.name}}" city-code="{{item.cityCode}}" ng-click="getCityCode(this)">
+                                <li ng-repeat="item in cities | filter: {name}" class="citySelectItem" data-name="{{item.name}}" city-code="{{item.cityId}}" ng-click="getCityCode(this)">
                                   {{item.name}}
                                 </li>
                             </ul>
@@ -50,6 +50,7 @@
                 <div class="form-group">
                     <button class="btn btn-default quickSearchCheck" ng-click="pageFun($event)">查询</button>
                     <button class="btn btn-info resetQuickSearchItem" ng-click="pageFun($event)">重置</button>
+                    <button class="btn btn-primary" ng-click="addWorkerType()" >添加工种</button>
                 </div>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
@@ -107,38 +108,36 @@
                     <th width="10%">区域</th>
                     <th width="15%"></th>
                 </tr>
-                <tr ng-repeat="item in data | filter:{project_name} | filter:{construction_trades}">
+                <tr ng-repeat="item in data | filter:{project_name} | filter:{construction_trades}" id="tr_{{$index}}">
                     <td>{{item.serial_number}}</td>
                     <td>{{item.trades_value}}</td>
                     <td>{{item.unit}}</td>
                     <td>
-                        {{item.work_area}}
-                        <input type="text" name="work_area" id="work_area_{{$index}}" value="{{item.work_area}}" class="work_area inputEditActive" >
+                        <div class="">{{item.work_area}}</div>
+                        <input type="text" name="work_area" id="work_area_{{$index}}" value="{{item.work_area}}" class="work_area inputEditActive" data="{{item.work_area}}">
                     </td>
                     <td>
                         {{item.rate}}
-                        <input type="text" class="rate inputEditActive" name="rate" value="{{item.rate}}" id="rate_{{$index}}">
+                        <input type="text" class="rate inputEditActive" name="rate" value="{{item.rate}}" id="rate_{{$index}}" data= "{{item.rate}}">
                     </td>
                     <td> {{item.life_house_work}} </td>
                     <td>{{item.area}}</td>
-                    <input type="hidden" name="labor_expense_statement_id_{{$index}}" value ='{{item.labor_expense_statement_id}} '>
+                    <input type="hidden" id="labor_expense_statement_id_{{$index}}" name="labor_expense_statement_id_{{$index}}" value ='{{item.labor_expense_statement_id}} '>
                     <td align="right" class="operationGroup">
                         <div class="operation">
                             <a class="btn btn-success btn-xs" 
-                                ng-click="quickEdit.quickEditFun($event)"
-                                data = "{{$index}}"
-                                id = "quickEditFun_{{$index}}"
-                                >
+                                ng-click="craftFeeEdit($index, $event)">
                                 编辑</a>
-
+                            
                             <a  class="btn btn-primary btn-xs quickEditSave" 
                                 id="quickEditSave_{{$index}}"
                                 
-                                ng-click="quickEdit.quickEditSave($event)">
+                                ng-click="craftFeeEditSave($event, $index)"
+                                >
                                 保存</a>
                             <a  class="btn btn-primary btn-xs inputEditCancel" 
-                                id="inputEditCancel_{{$index}}"
-                                ng-click="quickEdit.inputEditCancel()">
+                                
+                                ng-click="craftFeeEditCancel($index, $event)">
                                 取消</a>    
                         </div>
                     </td>
