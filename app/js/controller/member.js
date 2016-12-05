@@ -146,7 +146,7 @@ app.controller("member_verify", function($location, $scope, $http, getCityData, 
 
         ngDialog.open({
             id: '',
-            templateUrl: 'templates/member_detail.html',
+            templateUrl: 'templates/member_verifty_detail.html',
             width: 800,
             controller: function($scope) {
                 
@@ -155,6 +155,7 @@ app.controller("member_verify", function($location, $scope, $http, getCityData, 
                     // console.log(callback)
                     $scope.memberDetails = callback.data.data.datas;
 
+                    console.table($scope.memberDetails);
                 })
 
             }
