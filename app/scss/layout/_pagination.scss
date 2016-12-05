@@ -1,0 +1,33 @@
+.pagination {
+	a {
+		&:first-child {
+
+			border-radius: 15px !important;
+		}
+		// &.form-control {
+		// 	border-bottom-left-radius: 15px;
+		// 	border-top-left-radius: 15px;
+		// }
+	}
+	&.pager {
+
+		display: inline-block;
+
+		.form-control {
+
+			display: inline-block;
+			line-height: 22px;
+			width: auto;
+		}
+		
+		li {
+			a {
+				&.form-control {
+					border-radius: 15px;
+				}
+			}
+		}
+	}
+
+
+}

@@ -1,0 +1,49 @@
+<div class="memberVerifySection">
+    <ol class="breadcrumb">
+      <li>
+      <a href="#">
+      <i class="fa fa-home" aria-hidden="true">会员管理</i>
+      </a>
+      </li>
+      <li>
+      <a href="#">
+      <i class="fa fa-angle-right" aria-hidden="true">会员审核</i>
+      </a>
+      </li>
+    </ol>
+
+<a-pagination pagecount="{{pager.pageCount}}" pagenumber="{{pager.pageNumber}}" pagesize="{{pager.pageSize}}" data="" url="{{pager.url}}">
+	
+</a-pagination>
+
+
+</component-pagination>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>会员名称</th>
+				<th>性别</th>
+				<th>手机号码</th>
+				<th>所在区域</th>
+				<th>来源</th>
+				<th>服务类型</th>
+				<th>注册时间</th>
+				<th>审核状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pager.data">
+				<td>{{item.real_name}}</td>
+				<td>{{item.gender}}</td>
+				<td>{{item.bound_mobile_number}}</td>
+				<td>{{item.city_name}}</td>
+				<td></td>
+				<td>{{item.role_name}}</td>
+				<td>{{item.register_time | date:'yyyy-MM-dd mm:ss:ss'}}</td>
+				<td>{{item.isverify_status_text}}</td>
+				<td><button ng-click="verifyDetails(item.user_id, item.role_code )" class="btn btn-primary btn-xs">查看 {{item.role_code}} {{item.user_id}}</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

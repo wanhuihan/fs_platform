@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Bootstrap Google Plus Theme</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>    
+        <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+
+        <script src="//cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>        <script type="text/javascript" src="js/angular-route.min.js"></script>
+     	
+        <script src="//cdn.bootcss.com/ng-dialog/0.6.4/js/ngDialog.min.js"></script>
+        <link href="//cdn.bootcss.com/ng-dialog/0.6.4/css/ngDialog.min.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/ng-dialog/0.6.4/css/ngDialog-theme-default.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog/ngDialog.css">
+
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/todc-bootstrap.css">
+	</head>
+	<body>
+    <header class="navbar navbar-static-top bs-docs-nav">
+        <div class="col-md-2">
+            <h2 class="logo">生命屋管理系统</h2>
+        </div>
+        <div class="col-md-10">
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="../getting-started/">会员管理</a>
+                </li>
+                <li class="active">
+                  <a href="../css/">装修管理</a>
+                </li>
+                <li >
+                  <a href="../components/">供应商管理</a>
+                </li>
+                <li>
+                  <a href="../javascript/">财务管理</a>
+                </li>
+                <li>
+                  <a href="../customize/">系统管理</a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="" ><i class="fa fa-bell" aria-hidden="true"></i>任务提示</a></li>
+                <li><a href="" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i>系统信息</a></li>
+                <li><a href="" ><i class="fa fa-cog" aria-hidden="true"></i>个人管理</a></li>
+              </ul>
+            </nav>                           
+        </div>
+    </header>
+    <div class="dashboard container-fluid " ng-app="fs" ng-controller="decoration">
+        <div class="row">
+            <div class="col-md-2 sideBar">
+
+                <ul class="list-group">
+                  <li class="list-group-header"><h2>装修管理</h2></li>
+                  <li class="list-group-item active"><a href="#">订单管理</a></li>
+                  <li class="list-group-item">
+                    <span class="collapse-caret collapsed dropdown-toggle" data-toggle="collapse" data-target="#profile"></span>
+                    <div class="list-group-item-wrapper" data-toggle="collapse" data-target="#profile">
+                      <a href="#">装修配置</a>
+                    </div>
+
+                    <div id="profile" class="collapse">
+                      <ul role="menu" class="list-group-item-menu">
+                        <li class="list-group-item">
+                          <div class="list-group-item-wrapper">
+                            <a href="#">工序配置</a>
+                            <div role="separator" class="divider"></div>
+                            <a href="#">工种费用</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="list-group-item"><a href="#">商品库</a></li>
+                    <li class="list-group-item"><a href="#">客服记录</a></li>                  
+                    <li class="list-group-item"><a href="#">统计分析</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10" ng-view>
+                <ol class="breadcrumb">
+                  <li><a href="#">装修管理</a></li>
+                  <li><a href="#">装修配置</a></li>
+                  <li class="active">工序配置</li>
+                </ol>
+               <button class="btn fa fa-mail-reply backBtn">返回</button>
+                <div class="container-fluid">
+                    <form class="quickSearch">
+                      <fieldset>
+                        <label>工序名称</label>
+                        <input type="text" placeholder="">
+                        <label>工种</label>
+                        <select class="">
+                          <option>瓦工</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                         <button class="btn btn-primary addPro" ng-click="showAddProcessPopup()">添加工序</button>
+                      </fieldset>
+
+                    </form>
+                    <p>{{errorMsg}}</p>
+                    <table width="100%" class="table table-hover table-striped">
+                        <tr>
+                            <th width="5%">序号</th>
+                            <th width="25%">工序名称</th>
+                            <th width="5%">施工工种</th>
+                            <th width="15%">验收依据</th>
+                            <th width="15%">施工内容简述</th>
+                            <th width="5%">单位</th>
+                            <th width="20%">工程量计算规则</th>
+                            <th width="10%">操作</th>
+                        </tr>
+                        <tr ng-repeat="item in data">
+                            <td>{{item.serial_number}}</td>
+                            <td>{{item.project_name}}</td>
+                            <td>{{item.check_man}}</td>
+                            <td>{{item.acceptance_basis}}</td>
+                            <td>{{item.construction_description}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.engineering_calculation_rules}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="javscript:void(0)" ng-click="showProcessDetailsPopup(this)"><i class="fa fa-eye" aria-hidden="true"></i>查看</a>
+                                    <a href=""><i class="fa fa-edit" aria-hidden="true"></i>编辑</a>
+                                    <a href=""><i class="fa fa-times-circle" aria-hidden="true"></i>删除</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <nav aria-label="Page navigation" class="navigation">
+                      <ul class="pagination">
+                        <li>
+                          <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul> 
+                    </nav>                    
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script type="text/javascript">
+        var app = angular.module('fs', ['ngDialog','ngRoute']);
+
+        app.controller('decoration', function($scope,$http,ngDialog){
+            $http.jsonp("http://192.168.0.158:8080/decoration_manage/decoration/processConfiguration/selectList?callback=JSON_CALLBACK")
+            .success(function(response,status,headers,config){
+                $scope.data = response.datas;
+                  // console.log(response.datas);
+            })
+            .error(function(response){
+                console.log(response);
+                if (!response) {
+                    $scope.errorMsg = '程序出现错误，请稍后再试';
+                }
+            })
+
+            $scope.addProject = function() {
+                $scope.datas.push({
+                    acceptance_basis: '',
+                    check_man: '',
+                    construction_description: '',
+                    engineering_calculation_rules: '',
+                    process_configuration_id: '',
+                    project_name: '',
+                    serial_number: '',
+                    status: '',
+                    unit: ''
+                })
+            }
+            // $scope.a = 123123;
+            $scope.showAddProcessPopup = function () {
+                ngDialog.open({ 
+                    template: 'process_popup.html',
+                    className: 'ngdialog-theme-plain addProjectPop',
+                    scope: $scope
+                });
+            };  
+            $scope.showProcessDetailsPopup = function (e) {
+                // console.log(e.item.serial_number);
+                var process_configuration_id = e.item.process_configuration_id;
+                $http.jsonp("http://192.168.0.158:8080/decoration_manage/decoration/processConfigurationDetail/selectList?processId="+process_configuration_id+"&callback=JSON_CALLBACK")
+                .success(function(response,status,headers,config){
+                    $scope.processDetails = response;
+                    console.log($scope.processDetails) 
+                    ngDialog.open({ 
+                        template: 'process_popup_details.html',
+                        className: 'ngdialog-theme-plain project',
+                        scope: $scope
+
+                    });                       
+                })
+                .error(function(response){
+                    console.log(response);
+                    if (!response) {
+                        $scope.errorMsg = '程序出现错误，请稍后再试';
+                    }
+                })  
+                             
+
+            };                      
+        })
+
+        app.config(function($routeProvider) {
+          $routeProvider
+
+            // route for the home page
+            .when('/', {
+              templateUrl : 'templates/dashboard.html',
+              // controller  : 'mainController'
+            })
+
+            // route for the about page
+            .when('/decoration', {
+              templateUrl : 'templates/decoration.html',
+              // controller  : 'aboutController'
+            })
+
+            // route for the contact page
+            .when('/contact', {
+              templateUrl : 'pages/contact.html',
+              // controller  : 'contactController'
+            });
+        });
+
+
+    </script> 
+	</body>
+</html>

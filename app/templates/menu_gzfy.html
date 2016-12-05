@@ -1,0 +1,107 @@
+<div class="decorationCraftFee container-fluid" ng-controller="menu_gzfy" ng-init="a()">
+<!--  -->
+    <ol class="breadcrumb">
+      <li>
+      <a href="#">
+      <i class="fa fa-home" aria-hidden="true">装修管理</i>
+      </a>
+      </li>
+      <li>
+      <a href="#">
+      <i class="fa fa-angle-right" aria-hidden="true">装修配置</i>
+      </a>
+      </li>
+      <li class="active">
+      <i class="fa fa-angle-right" aria-hidden="true">工种费用</i>
+      </li>
+    </ol>
+
+    <div class="alert alert-danger" role="alert" ng-if="errorMsg">
+      {{errorMsg}}
+    </div> 
+
+	<div class="craftFeeListBox" ng-show="errMsgShow" >
+		<ul class="pagination">
+			<li>
+				<a href="#"><i class="fa fa-angle-left">上一页</i></a>
+			</li>	
+			<li>
+				<a ng-click="pagination.nextPage()"><i class="fa fa-angle-right">下一页</i></a>
+			</li>		
+			<li>当前第{{pagination.pageNumber}}页</li>
+			<a href="#/menu_gzfy/?page=1">123</a>
+			<li>
+				<select class="pageNum" ng-model="pagination.pageNumber">
+					<option ng-repeat="item in c" value="{{item.pageNum}}">{{item.pageNum}}</option>
+				</select>
+			</li>
+			<li>
+				<select class="perPage" ng-model="pagination.pageSize">
+					<option value="20">每页20条</option>
+					<option value="40">每页40条</option>
+					<option value="60">每页60条</option>
+					<option value="80">每页80条</option>
+					<option value="100">每页100条</option>
+				</select>
+			</li>
+		</ul>	
+		<table>
+			<thead>
+				<tr>
+					<td colspan="8">
+						<form class=" quickSearch form-inline" role="form">
+							<label>区域</label>
+							<div for="citySelect" class="citySelect form-group" >
+								<input type="text" name="" class="form-control citySelectInput" ng-model="name" city-code="" ng-focus="cityListShow()" ng-blur="cityListHide()" ng-model-onblur>
+								<div class="cityList" ng-show="cityListShowVal" >
+									<ul>
+										<li ng-repeat="item in cities | filter: {name}" class="citySelectItem" data-name="{{item.name}}" city-code="{{item.cityCode}}" ng-click="getCityCode(this)">
+											{{item.name}}
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div for="craft" class="craft form-group craftSelect">
+								<label>工种</label>
+								<select class="form-control" ng-model="craftTypeSelect">
+								<option value="all">所有</option>
+									<option ng-repeat="craftItem in craftData" value="{{craftItem.id}}">{{craftItem.name}}</option>
+								</select>
+							</div>
+							<div class="form-group">
+
+								<button class="btn btn-default" ng-click="craftTypeFeeResult(this)">查询</button>
+								<button class="btn btn-info" ng-click="resetInputSearch()">重置</button>
+							</div>
+						</form>				
+					</td>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>工种</th>
+					<th>单位</th>
+					<th>地区信息价综合工日</th>
+					<th>倍率</th>
+					<th>生命屋标准综合工日(信息价*倍率)</th>
+					<th>区域</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in craftFee">
+					<td class="num">{{item.serial_number}}</td>
+					<td class="craft">{{item.trades_value}}</td>
+					<td class="unit">{{item.unit}}</td>
+					<td class="workday">{{item.work_area}}</td>
+					<td class="rate">{{item.rate}}</td>
+					<td class="result">{{item.life_house_work}}</td>				
+					<td class="area">{{item.area}}</td>
+					<td class="operation"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

@@ -1,0 +1,359 @@
+@font-face{font-family:'FontAwesome';src:url('../fonts/fontawesome-webfont.eot?v=4.6.3');src:url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'),url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'),url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'),url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'),url('../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
+// decoration_config
+
+.decoration_config {
+	.table {
+		font-size: 12px;
+		td, th {
+			color: #777;
+		}
+		.operationGroup {
+			padding-left: 0;
+		}
+	}	
+	.form-group {
+		.addPro {
+			float: right;
+		}
+		&#addPro {
+			float: right;
+		}
+	}
+}
+
+.decorationConfigDetails {
+	// position: relative;
+	.detailList {
+		list-style: none;
+		margin:0; 
+		padding: 0;
+		span {
+			display: inline-block;
+			// float: left;
+			padding: 8px;
+			text-align: center;
+			line-height: 20px;
+			// background: #eee;
+
+		}
+		> li > span {
+			border-bottom:1px solid #eef4f7;
+			height: 40px;
+		}
+		li {
+			font-size: 0;
+			span {
+				font-size:13px;
+			}
+			ul {
+				padding: 0;
+			}
+		}
+		.listOrder {
+			width: 5%;
+		}
+		.listProName {
+			width:40%;
+			text-align: left;
+		}
+		.listPos {
+			width:17%;
+			text-align: left;
+		}
+		.listCraft {
+
+			width:8%;
+
+			input {
+				width: 60%;
+				text-align: center;				
+			}
+		}
+		.listUnit {
+			width: 5%;
+			// position: relative;
+		}
+		.listWorkLoad {
+			width: 5%;
+			text-align: center;
+		}
+		.listOperation {
+			width: 20%;
+			text-align: right;
+		}
+		 & > li {
+
+			&:nth-child(odd) {
+				// background: #f8fbfd;
+			}
+			&:first-child {
+				// background: #eef4f7;
+			}
+			> span {
+				background: #f8fbfd;
+			}
+			&.listHead {
+				span {
+					background: #eef4f7;
+				}
+			}
+			li {
+				background: inherit;
+			}
+			 & > ul {
+				padding-left: 0;
+				color: #777;
+				& > li {
+					.listProName {
+						// padding-left:40px;
+						img {
+							margin-left: 25px;
+						}
+					}
+
+					& > ul {
+						& > li {
+							.listProName {
+								// padding-left:80px;
+								img {
+									margin-left: 50px;
+								}
+							}
+							& > ul {
+								& > li {
+									.listProName {
+										img {
+											margin-left: 75px;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				.fa {
+					margin-right:10px;
+				}
+			}
+		}
+
+		.addItem {
+			display: none;
+			span {
+				position: relative;
+				input {
+					width: 100%;
+				}
+				select {
+					height: 25.63px;
+				}
+				&.listProName, &.listPos {
+					input {
+						width: 50%;
+					}
+				}
+				&.listOperation {
+					input {
+						width: auto;
+					}
+				}
+			}
+		}
+		.subItemListAdd {
+			display: none;
+			.listUnit, .listWorkLoad  {
+				position: relative;
+				input {
+					width: 100%;
+				}
+			}	
+			.listProName {
+				input {
+					width: 50%;
+				}
+			}
+		}
+	}
+}
+
+// decorationCraftFee
+
+.decorationCraftFee {
+	.craftFeeListBox {
+		padding-left: 15px;
+		table {
+			color: #777;
+			width: 100%;
+			font-size: 13px;
+			.btn-group {
+				.btn {
+					border-radius: 0;
+				}
+			}
+			thead {
+				th {
+					background: #eef4f7;
+					padding: 8px;
+				}
+			}
+			tbody {
+				td {
+					padding: 8px;
+				}
+				tr:nth-child(odd) {
+					background: #f8fbfd;
+				}
+				tr {
+					&:hover {
+						background: #eef4f7;
+						cursor: pointer;
+					}
+					&.selected {
+						input {
+							display: block;
+						}
+						.btn-success {
+							display: none;
+						}
+						.quickEditSave {
+							display: inline-block;
+						}
+						.inputEditCancel {
+							display: inline-block;
+						}
+					}
+				}
+				.num {
+					width:3%;
+				}
+				.craft {
+					width:50%;
+				}
+				.unit  {
+					width:5%;
+				}
+				.operation {
+					.quickEditSave, 
+					.inputEditCancel {
+						display: none;
+					}
+				}
+			}
+
+		}		
+	}
+	.quickSearch  {
+		
+		.citySelect {
+			position: relative;
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				li {
+					padding:5px 10px 5px ;
+				}
+			}
+			.cityList {
+				position: absolute;
+				top:34px;
+				width: 100%;
+				overflow: auto;
+				height: 300px;
+				z-index: 1;
+				background: #fff;
+				// display: none;
+				.citySelectItem  {
+					&:hover {
+						background: #eee;
+					}
+				}
+			}
+		}
+		.pagination  {
+			margin: 0;
+			li {
+				.next {
+					border-radius: 15px;
+					margin-left: 10px;
+				}
+			}
+			.pagerInfo {
+				padding: 5px 0px 5px 10px;
+				line-height: 28px;
+				color: #666;
+			}
+			select {
+				padding: 5px 14px;
+				border: 1px solid #ddd;
+				border-radius:2px;
+				margin-left:10px;
+			}
+		}
+		.col-md-4 {
+			text-align: right;
+		}
+	}
+	.decorationCraftFeeList {
+		td {
+			position: relative;
+			input {
+				display: block;
+				position: absolute;
+				top:8px;
+				left:8px;
+				width:50px;
+				box-sizing: border-box;
+				border:0;
+				border: 1px solid #ddd;
+				display: none;
+				padding: 0;
+				margin: 0;
+			}
+			div {
+				// border:1px solid #fff;
+			}
+		}
+	}
+}
+
+// popup show
+.ngdialog  {
+	&.processConfigAdd, &.processConfigEdit  {
+		.ngdialog-content {
+			padding-top:30px;
+			width: 500px;
+			.form-horizontal {
+				label {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+
+	&.workerTypeAdd {
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				width: 33.333333%;
+				display: inline-block;
+				h2 {
+					font-size: 15px;
+					margin: 0;
+				}
+				ul {
+					li {
+						width: 100%;
+						font-size: 13px;
+					}
+				}
+			}
+		}
+		#workTypeAddForm {
+			display: none;
+			font-size:13px;
+		}
+	}	
+}

@@ -1,0 +1,59 @@
+<div>
+    
+    <div id="citySelect">
+        <ul>
+            <li ng-repeat="item in city">
+                <h2>{{item.letter}}</h2>
+                <ul>
+                    <li ng-repeat="i in item.value" ng-click="citySelect(i.cityId, i.cityname)">
+                        {{i.cityname}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <form id="workTypeAddForm">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>工种</td>
+                    <td>单位</td>
+                    <td>地区信息价综合日</td>
+                    <td>倍率</td>
+                    <td>生命屋标准综合工日(信息价*倍率)</td>
+                    <td>区域</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="item in workerType">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td> {{item.unit}}</td>
+                    <td>
+                        <input ng-focus="calcRate()" type="text" name="add_work_area_{{item.id}}" id="add_work_area_{{item.id}}" 
+                         >
+                    </td>
+
+                    <td>
+                        <input type="text" name="add_rate_{{item.id}}" id="add_rate_{{item.id}}" >
+                    </td>
+
+                    <td>
+                        <number id="calcResult_{{item.id}}"></number>
+                    </td>
+
+                    <td>{{item.area}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+
+            <button class="btn btn-default" ng-click="subWorkerTypeAdd()">确认添加</button>
+        </div>
+    </form>
+
+</div>

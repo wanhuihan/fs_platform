@@ -1,0 +1,169 @@
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  font-family: Arial;
+  list-style: none; }
+
+html, body {
+  font-size: 10px; }
+
+.headInfo h2 {
+  font-size: 1.4rem; }
+
+.mainInfo h2 {
+  font-size: 1.4rem; }
+
+.mainInfo h3 {
+  color: #bbb;
+  padding: 1rem 0; }
+
+.mainInfo .tabCont {
+  display: none; }
+  .mainInfo .tabCont.normalPro .errorAccept input {
+    width: 20%;
+    text-align: center;
+    padding: 0;
+    height: 3rem;
+    border: 0.1rem solid #bbb;
+    box-sizing: border-box; }
+    .mainInfo .tabCont.normalPro .errorAccept input:nth-child(n) {
+      border-bottom: 0;
+      border-right: 0; }
+    .mainInfo .tabCont.normalPro .errorAccept input:nth-child(n+5) {
+      border-bottom: 0.1rem solid #bbb; }
+    .mainInfo .tabCont.normalPro .errorAccept input:nth-child(5) {
+      border-right: 0.1rem solid #bbb;
+      border-bottom: 0; }
+    .mainInfo .tabCont.normalPro .errorAccept input:nth-child(10) {
+      border-right: 0.1rem solid #bbb; }
+  .mainInfo .tabCont.normalPro .errorAccept fieldset {
+    padding: 0;
+    font-size: 0; }
+  .mainInfo .tabCont.normalPro .errorAccept h3 {
+    border-bottom: 0.1rem solid #bbb;
+    border-radius: 0.1rem;
+    padding: 1rem;
+    color: #49ade9;
+    font-size: 1.4rem;
+    position: relative; }
+    .mainInfo .tabCont.normalPro .errorAccept h3 span {
+      position: absolute;
+      font-size: 2.0rem;
+      margin: auto;
+      right: 1rem; }
+  .mainInfo .tabCont.normalPro .errorAccept ul {
+    display: none; }
+    .mainInfo .tabCont.normalPro .errorAccept ul.show {
+      display: block; }
+    .mainInfo .tabCont.normalPro .errorAccept ul.hide {
+      display: none; }
+    .mainInfo .tabCont.normalPro .errorAccept ul li {
+      font-size: 1.2rem;
+      position: relative;
+      padding: 1rem 0.5rem 0; }
+      .mainInfo .tabCont.normalPro .errorAccept ul li fieldset {
+        padding-top: 1rem; }
+      .mainInfo .tabCont.normalPro .errorAccept ul li:last-child {
+        padding-bottom: 1rem; }
+  .mainInfo .tabCont.normalPro .errorAccept h2 {
+    padding: 1rem 0 0; }
+
+.mainInfo .generalPro {
+  display: block; }
+
+.mainInfo .tab {
+  z-index: 1;
+  width: 100%;
+  left: 0;
+  padding: 0; }
+  .mainInfo .tab h2 {
+    width: 50%; }
+  .mainInfo .tab .tabTit {
+    display: inline-block;
+    width: 50%;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    background: #fff;
+    border-bottom: 0.3rem solid #eee; }
+    .mainInfo .tab .tabTit:last-child {
+      border-right: 0; }
+    .mainInfo .tab .tabTit.selected {
+      border-bottom: 0.3rem solid #49ade9;
+      color: #49ade9; }
+    .mainInfo .tab .tabTit span {
+      vertical-align: middle; }
+
+.btmInfo {
+  font-size: 0;
+  margin-bottom: 8rem;
+  padding-top: 1.0rem; }
+  .btmInfo label {
+    font-size: 1.2rem; }
+  .btmInfo input {
+    vertical-align: sup; }
+  .btmInfo h2 {
+    font-size: 1.4rem;
+    padding: 1rem 0; }
+
+form fieldset {
+  padding: 2rem 2rem 0; }
+  form fieldset input {
+    display: inline-block;
+    border-bottom: 0.1rem solid #bbb;
+    width: 70%;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    height: 3rem;
+    font-size: 1.4rem; }
+  form fieldset label {
+    display: inline-block;
+    width: 30%;
+    color: #bbb;
+    box-sizing: border-box;
+    padding-right: 1rem;
+    text-align: right; }
+  form fieldset div {
+    position: relative;
+    padding: 0.5rem 0; }
+    form fieldset div.shortTxt label {
+      line-height: 3rem; }
+  form fieldset div:after {
+    clear: both;
+    content: "";
+    display: block; }
+  form fieldset.headInfo {
+    font-size: 0; }
+    form fieldset.headInfo label {
+      font-size: 1.2rem; }
+
+form textarea {
+  border: 0.1rem solid #bbb;
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1.4rem; }
+
+form .formTit {
+  text-align: center; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+  footer button {
+    width: 100%;
+    height: 5rem;
+    background: #49ade9;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 0.2rem 0.5rem #1c1c1c; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }
