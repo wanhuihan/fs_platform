@@ -8,26 +8,27 @@
       </li>
       <li class="active">
       <a href="#">
-      <i class="fa fa-angle-right" aria-hidden="true">采购订单管理</i>
+      <i class="fa fa-angle-right" aria-hidden="true">退换货订单管理</i>
       </a>
       </li>
     </ol>
 
 	<div class="quickSearch">
-		<form class="form form-inline" action="form_action.asp" method="get">
+		<form class="form form-inline">
 			
+			<div class="form-group">
+				<label>退换货订单号</label>
+				<input type="text" name="" class="form-control">
+			</div>
+
 			<div class="form-group">
 				<label>订单号</label>
 				<input type="text" name="" class="form-control">
 			</div>
 
 			<div class="form-group">
-				<label>供应商</label>
-				<input type="text" name="" class="form-control">
-			</div>
+				<label>退换货时间</label>
 
-			<div class="form-group">
-				<label>下单时间</label>
 				<input type="text" name="" class="form-control" id="datePick">
 
 			</div>
@@ -36,9 +37,6 @@
 				
 				<label>订单状态：</label>
 				<select  name="" class="form-control">
-				<option value="">全部</option>
-				<option value="">待发货</option>
-				<option value="">已发货</option>
 					<option ng-repeat="item in provider.proType.data">{{item}}</option>
 				</select>
 
@@ -56,11 +54,11 @@
 			
 			<thead>
 				<tr>
+					<th>退换货订单号</th>
 					<th>订单号</th>
-					<th>下单时间</th>
-					<th>收货人</th>
-					<th>总金额(元)</th>
-					<th>订单状态</th>
+					<th>退货时间</th>
+					<th>退货人</th>
+					<th>退换货订单状态</th>
 					<th>所属区域</th>
 					<th>供应商</th>
 					<th>操作</th>
@@ -70,9 +68,9 @@
 			<tbody>
 				<tr>
 					<td>SMW48575468959</td>
+					<td>SMWTHH85425155</td>
 					<td>2016-08-10 09：45：10</td>
 					<td>张佳</td>
-					<td>62000.00</td>
 					<td>未完成</td>
 					<td>重庆</td>
 					<td>重庆飘瑞斯特贸易有限公司</td>
@@ -84,9 +82,9 @@
 
 				<tr>
 					<td>SMW48575468960</td>
+					<td>SMWTHH85425156</td>
 					<td>2016-08-10 09：45：10</td>
 					<td>张佳</td>
-					<td>16200.00</td>
 					<td>未完成</td>
 					<td>重庆</td>
 					<td>重庆飘瑞斯特贸易有限公司</td>
@@ -94,12 +92,13 @@
 					<td>
 						<a class="btn btn-primary">查看</a>
 					</td>
+
 				</tr>
 				<tr>
 					<td>SMW48575468961</td>
+					<td>SMWTHH85425157</td>
 					<td>2016-08-10 09：45：10</td>
 					<td>张佳</td>
-					<td>62000.00</td>
 					<td>已完成</td>
 					<td>重庆</td>
 					<td>重庆飘瑞斯特贸易有限公司</td>
@@ -111,9 +110,9 @@
 
 				<tr>
 					<td>SMW48575468962</td>
+					<td>SMWTHH85425158</td>
 					<td>2016-08-10 09：45：10</td>
 					<td>张佳</td>
-					<td>16200.00</td>
 					<td>已完成</td>
 					<td>重庆</td>
 					<td>重庆飘瑞斯特贸易有限公司</td>
@@ -121,8 +120,7 @@
 						<a class="btn btn-primary">查看</a>
 					</td>
 
-				</tr>
-												
+				</tr>										
 			</tbody>
 		</table>
 	</div>
