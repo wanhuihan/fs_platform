@@ -304,6 +304,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }, 
     })
 
+// 退换货管理
+    $stateProvider.state('dashboard.menu_gysgl_thhddgl', {
+
+        url: '/menu_gysgl_thhddgl',
+
+        views: {
+            'sideBar@': {
+                templateUrl: 'templates/sideBar.html',  
+                controller: 'sideBar'    
+            },
+            'mainSection@': {
+                templateUrl: 'templates/refund.html',
+                controller: 'provider'
+            }
+        }, 
+    })
+
     $stateProvider.state('dashboard.menu_cgddgl', {
 
         url: '/menu_cgddgl',

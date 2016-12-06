@@ -18,7 +18,7 @@ app.controller("provider", function($scope, $http, $location, $log, dictionary) 
 			// console.log(callback);
 
 			$scope.provider.proType = {
-				data: ['主材','辅材']
+				data: ['全部','主材','辅材']
 			}
 			// $scope.provider.proType = callback.
 		})
