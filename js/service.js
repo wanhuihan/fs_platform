@@ -14,7 +14,24 @@ app.service('page', function($http) {
 
             method: 'post',
             url: g.host + url,
-            params: items,
+            data: items,
+
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } ,
+
+            transformRequest: function(obj) {    
+                var str = [];    
+                for (var p in obj) {    
+                    
+                    if (typeof obj[p] == 'object' ) {
+                        // console.log(p, JSON.stringify(obj[p]));
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(JSON.stringify(obj[p])))
+                    } else {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));  
+                    }
+                      
+                }    
+                return str.join("&");    
+            }
 
         })
 

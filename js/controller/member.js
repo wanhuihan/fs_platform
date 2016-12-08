@@ -121,6 +121,11 @@ app.controller("member", function($location, $scope, $http, getCityData, verifyL
 
 })
 
+/*
+ *
+ *
+ *
+*/
 
 app.controller("member_verify", function($location, $scope, $http, getCityData, member, ngDialog) {
     
@@ -128,13 +133,11 @@ app.controller("member_verify", function($location, $scope, $http, getCityData, 
 
     member.verifyList().then(function(callback) {
 
-        // console.log(callback.data.data);
-
         $scope.pager.url = '/decoration_manage/member/verify/list';
         $scope.pager.data = callback.data.data.datas;
         $scope.pager.pageNumber = callback.data.data.pageNumber.toString();
         $scope.pager.pageCount = callback.data.data.pageCount;
-        $scope.pager.pageSize = callback.data.data.pageSize;
+        $scope.pager.pageSize = callback.data.data.pageSize.toString();
         $scope.pager.total = callback.data.data.total;
         $scope.pager.numList = callback.data.data.NumberList;
 

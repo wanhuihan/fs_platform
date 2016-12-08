@@ -33,18 +33,41 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
         finalSubCate: {}
     }
 
-    $scope.init.url = '/decoration_manage/decoration/commodity/selectList';
+    $scope.pager = {};
+
+    $scope.pager = {
+        
+        data: '',
+        pageSize: '',
+        pageCount: '',
+        total: '',
+        numList: '', 
+        url: '/decoration_manage/decoration/commodity/selectList' 
+     }
 
 
     $scope.getList = function() {
 
-        page.getData($scope.init).then(function(callback) {
+        var obj = Object.assign($scope.pager, $scope.init);
+            delete obj.data;
+
+        page.getData(obj).then(function(callback) {
 
             var code = callback.data.code;
-            // console.log(callback.data.data)
-            if (code == 0) {
 
-                $scope.data.list = callback.data.data;
+            // console.log(callback.data.data)
+
+            if (code == 0) {
+                console.log(callback);
+                // $scope.pager.data = 
+                $scope.pager.data = callback.data.data.datas;
+                $scope.pager.pageNumber = callback.data.data.pageNumber.toString();
+                $scope.pager.pageCount = callback.data.data.pageCount;
+                $scope.pager.pageSize = callback.data.data.pageSize.toString();
+                $scope.pager.total = callback.data.data.total;
+                $scope.pager.numList = callback.data.data.NumberList;
+
+                
 
                 // $scope.data.list.pageNumber = $scope.data.list.pageNumber.toString();
             }
@@ -86,66 +109,66 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
 
     $scope.getCategory();
 
-    $scope.goodsCateStretch = function(level, subDict, e) {
+    $scope.goodsCateStretch = function(level, subDict, e, key) {
 
         // console.log(arguments);
         var currentTarget = angular.element(e.target);
 
         var parent = angular.element(e.target.parentElement);
 
-        // console.log(parent);
+        console.log(level, subDict, key);
 
         if (parent.hasClass("stretchOff") ) {
 
+                
+            if (level == 1) {
+
+                $scope.init.level1 = key;
+
+            }
+            if (level == 2) {
+
+                $scope.init.level2 = key;
+
+            }
+            if (level == 3) {
+
+                $scope.init.level3 = key;
+
+            }
+
             if (subDict) {
+
                 parent.removeClass("stretchOff").addClass("stretchOn");
                 currentTarget.find("> .fa").removeClass("fa-angle-right").addClass("fa-angle-down")
-            }
-            $scope.init['level'+level] = level;
 
-            if (level == 1 || level == 2) {
-                $scope.init.level3 = '';
-            }
-            if (level == 1) {
-                $scope.init.level2 = '';
-            }
-
-            if (level == 2) {
-                $scope.init.level3 = '';
             }
 
         } else {
-            currentTarget.find("> .fa").removeClass("fa-angle-down").addClass("fa-angle-right")
-            parent.addClass("stretchOff").removeClass("stretchOn");
 
-            if (subDict) {
+            parent.addClass("stretchOff").removeClass("stretchOn");    
 
-                console.log(currentTarget)
-                angular.element(currentTarget).removeClass("stretchOn").addClass("stretchOff");
-
-                if (level == 1) {
-
-                    angular.element(e.target.parentElement).find("li.stretchOn").addClass("stretchOff").removeClass("stretchOn");
-                    angular.element(e.target.parentElement).find("div .fa").removeClass("fa-angle-down").addClass("fa-angle-right");
-                    // angular.element(document.querySelector(".subNav ul")).find(".stretchOn").removeClass("stretchOn").addClass("stretchOff");                
-                }               
-                
-            } else {
-
-                // $scope.getList();
-            }
-
-            if (level == 1 || level == 2) {
-                $scope.init.level3 = '';
-            }
             if (level == 1) {
-                $scope.init.level2 = '';
-            }
 
+                $scope.init.level1 = key;
+
+                $scope.init.level2 = "";
+
+                $scope.init.level3 = "";
+
+            }
             if (level == 2) {
-                $scope.init.level3 = '';
-            }            
-            
+
+                $scope.init.level2 = key;
+                $scope.init.level3 = "";
+
+            }
+            if (level == 3) {
+
+                $scope.init.level3 = key;
+
+            }
+                    
         }
 
         $scope.getList();

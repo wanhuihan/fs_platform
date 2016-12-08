@@ -17,7 +17,7 @@
  *
 */
 
-/*app.directive('componentPagination', function() {
+app.directive('componentPagination', function() {
 
     return {
 
@@ -157,12 +157,6 @@
 
             $scope.pageNumberSelect = function(num) {
 
-                // console.log($scope.data.list.pageSize.toString())
-
-                // items.pageSize = Number(items.pageSize);
-
-                // items.pageSize = $scope.data.list.pageSize + '';
-
                 items.pageNumber = Number(num);
 
                 page.getData(items).then(function(callback) { 
@@ -200,7 +194,7 @@
         }
 
     }
-})*/
+})
 
 
 /*
@@ -208,7 +202,7 @@
  *
 */
 
-app.directive('aPagination', function() {
+app.directive('pagination', function() {
 
     return {
 
@@ -312,9 +306,6 @@ app.directive('aPagination', function() {
                     $scope.pager.pageSize = callback.data.data.pageSize;
                     $scope.pager.total = callback.data.data.total;
 
-                    // console.log(typeof  $scope.pager.pageNumber);
-                    // console.log(items.pageNumber == callback.data.data.pageNumber)
-                    // $scope.pager.data = callback.data.data.datas;
                     if ($scope.pager.pageCount > 1) {
 
                         $scope.pager.prev = true;
@@ -379,8 +370,6 @@ app.directive('aPagination', function() {
                         $scope.pager.prev = true;
 
                     }
-
-
 
                 })
 

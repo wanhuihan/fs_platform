@@ -34,7 +34,7 @@
 			</ul>	
 
 
-			<component-pagination 
+			<pagination 
 
 			pagecount="{{data.list.pageCount}}"
 			
@@ -46,7 +46,7 @@
 
 			data = "labelType:{{init.labelType}},name:{{init.name}},materialCode:{{init.materialCode}}">
 			
-			</component-pagination>
+			</pagination>
 			
 		</div>
 		
@@ -59,7 +59,8 @@
 					<ul >
 						<li ng-repeat=" item in data.category.datas" 
 						data-id = "{{item.pid}} - {{item.ddKey}}" class="stretchOff" > 
-						<div ng-click="goodsCateStretch(item.level,  item.hasSubDict, $event)" >
+						<div ng-click="goodsCateStretch(item.level,  item.hasSubDict, $event, item.ddKey)" >
+						key: {{item.ddKey}}
 							<i class="fa fa-angle-right"
 							 ></i>
 							{{item.ddValue}}
@@ -71,8 +72,8 @@
 						</div>							
 							<ul class="subCate" >
 								<li ng-repeat="i in item.subDictList" class="stretchOff" >
-									<div  ng-click="goodsCateStretch(i.level, i.hasSubDict, $event) ">
-									
+									<div  ng-click="goodsCateStretch(i.level, i.hasSubDict, $event, i.ddKey) ">
+									key: {{i.ddKey}}
 									<i class="fa" 
 									ng-class="{true:'fa-angle-right', false: ''}[i.hasSubDict]"></i>
 									{{i.ddValue}} 
@@ -84,7 +85,8 @@
 									 </div>
 									<ul class="subCate" >
 										<li ng-repeat="b in i.subDictList" class="stretchOff">
-											<div ng-click="goodsCateStretch(b.level, b.hasSubDict, $event) " >
+											<div ng-click="goodsCateStretch(b.level, b.hasSubDict, $event, b.ddKey) " >
+												key: {{b.ddKey}}
 												<i class="fa "></i>
 												{{b.ddValue}}
 												<p class="operation">
@@ -153,7 +155,7 @@
 					</thead>
 
 					<tbody>
-						<tr ng-repeat="item in data.list.datas">
+						<tr ng-repeat="item in pager.data">
 
 							<td>{{item.number}}</td>
 
