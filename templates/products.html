@@ -36,15 +36,15 @@
 
 			<pagination 
 
-			pagecount="{{data.list.pageCount}}"
+			pagecount="{{pager.pageCount}}"
 			
-			pagenumber = "{{data.list.pageNumber}}"
+			pagenumber = "{{pager.pageNumber}}"
 
-			pagesize = "{{data.list.pageSize}}"
+			pagesize = "{{pager.pageSize}}"
 			
-			url = '{{init.url}}'
+			url = '{{pager.url}}'
 
-			data = "labelType:{{init.labelType}},name:{{init.name}},materialCode:{{init.materialCode}}">
+			data = "labelType:{{init.labelType}},name:{{init.name}},materialCode:{{init.materialCode}},from:{{init.from}},level1:{{init.level1}},level2:{{init.level2}},level3:{{init.level3}} ">
 			
 			</pagination>
 			
@@ -149,6 +149,8 @@
 
 							<th style="text-align: center">单价(RMB)</th>
 
+							<th>商品型号</th>
+
 							<th style="text-align: right"><span>操作</span></th>
 
 						</tr>
@@ -168,6 +170,8 @@
 							<td align="center">{{item.unit}}</td>
 
 							<td align="center">{{item.price}}</td>
+
+							<td>{{item.model}}</td>
 
 							<td align="right">
 								<a ng-click="productsDetails(item.materialConfigurationlId)" class="btn btn-default btn-sm">查看</a>

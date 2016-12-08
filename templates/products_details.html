@@ -1,7 +1,8 @@
 
 <div class="productsDetailsCont" ng-show="showActive">
 	<div class="row">
-		{{productDetailData.materialConfigurationlId}}
+		<!-- {{productDetailData.materialConfigurationlId}} -->
+
 		<div class="col-md-6">
 			
 			<ul class="list-group">
@@ -63,6 +64,11 @@
 					<span>添加时间</span>
 					<p>{{productDetailData.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</p>
 				</li>
+				<li>
+				<span>序号</span>
+				<p>{{productDetailData.number}}</p>
+				</li>
+
 				<li>
 					<span>备注</span>
 					<p>{{productDetailData.remark}}</p>
@@ -229,6 +235,14 @@
 							<label for="{{item.ddId}}">{{item.ddValue}}</label>
 						</span>
 
+						</p>
+					</li>
+
+					<li>
+						<span>序号</span>
+						<p>
+							<input class="form-control"  type="text" value="{{details.number}}" ng-model="details.number" name="number">
+												
 						</p>
 					</li>
 
