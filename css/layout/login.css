@@ -131,7 +131,7 @@ Login page
   .login .logo {
     margin-top: 10px; }
   .login .content {
-    padding1: 20px;
+    padding: 20px;
     width: 280px; }
   .login .content h3 {
     font-size: 22px; }
