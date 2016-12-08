@@ -41,6 +41,7 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
         pageSize: '',
         pageCount: '',
         total: '',
+        pageNumber: '',
         numList: '', 
         url: '/decoration_manage/decoration/commodity/selectList' 
      }
@@ -58,7 +59,7 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
             // console.log(callback.data.data)
 
             if (code == 0) {
-                console.log(callback);
+                // console.log(callback);
                 // $scope.pager.data = 
                 $scope.pager.data = callback.data.data.datas;
                 $scope.pager.pageNumber = callback.data.data.pageNumber.toString();
@@ -67,9 +68,11 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
                 $scope.pager.total = callback.data.data.total;
                 $scope.pager.numList = callback.data.data.NumberList;
 
-                
-
                 // $scope.data.list.pageNumber = $scope.data.list.pageNumber.toString();
+            }
+
+            if (callback.data.data.pageCount == 1 && callback.data.data.pageNumber == 1) {
+                $scope.pager.next = false;
             }
 
         })
@@ -116,7 +119,7 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
 
         var parent = angular.element(e.target.parentElement);
 
-        console.log(level, subDict, key);
+        // console.log(level, subDict, key);
 
         if (parent.hasClass("stretchOff") ) {
 
@@ -207,6 +210,8 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
 
     	}
 
+        $scope.pager.pageNumber = 1;
+
     	$scope.getList();
     }
 
@@ -220,8 +225,17 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
 
         }).success(function(data) {
 
-            console.log(data)
-            $scope.data.list = data.data;
+            // console.log(data)
+            $scope.pager.data = data.data.datas;
+            $scope.pager.pageNumber = data.data.pageNumber.toString();
+            $scope.pager.pageSize = data.data.pageSize.toString();
+            $scope.pager.pageCount = data.data.pageCount.toString();
+
+            if (data.data.pageNumber == 1 && data.data.pageCount == 1) {
+                $scope.pager.next = false;
+            } else {
+                $scope.pager.next = true;
+            }
         })
 
     }
@@ -373,6 +387,8 @@ app.controller("products", function($location, $window, $scope, $http, getCityDa
                     $scope.details.remark = callback.data.data.datas.remark;
 
                     $scope.details.specifications = callback.data.data.datas.specifications;
+
+                    $scope.details.number = callback.data.data.datas.number;
                     
                     if (callback.data.data.datas.roleCode) {
                         $scope.details.roleCode = callback.data.data.datas.roleCode.toString();

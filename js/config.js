@@ -72,7 +72,7 @@ var g = {
 
     },
 
-    host: 'http://192.168.0.224:8089',
+    host: 'http://192.168.0.224:8080',
 
     getData : function(data) {
         

@@ -251,6 +251,24 @@ app.directive('pagination', function() {
 
             })
 
+
+            function dataChk(obj) {
+
+                if (obj) {
+                    if (obj.data.value != '') {
+
+                        var dataArr = obj.data.value.split(',');
+
+                        for (var i = 0; i < dataArr.length; i++) {
+
+                            items[dataArr[i].split(":")[0]] = dataArr[i].split(":")[1];
+
+                        }
+                    }                        
+                }
+            }
+
+
             $scope.pageTurn = function(e) {
 
                 items.url = attributes.url.value;
@@ -302,8 +320,8 @@ app.directive('pagination', function() {
 
                     $scope.pager.data = callback.data.data.datas;
                     $scope.pager.pageNumber = callback.data.data.pageNumber.toString();
-                    $scope.pager.pageCount = callback.data.data.pageCount;
-                    $scope.pager.pageSize = callback.data.data.pageSize;
+                    $scope.pager.pageCount = callback.data.data.pageCount.toString();
+                    $scope.pager.pageSize = callback.data.data.pageSize.toString();
                     $scope.pager.total = callback.data.data.total;
 
                     if ($scope.pager.pageCount > 1) {
@@ -315,13 +333,12 @@ app.directive('pagination', function() {
                     if ($scope.pager.pageCount == $scope.pager.pageNumber) {
 
                         $scope.pager.next = false;
-
                     }
 
                     if ($scope.pager.pageCount > $scope.pager.pageNumber) {
                         $scope.pager.next = true;
                     }
-
+                    // console.log(callback);
                 })
 
             }
