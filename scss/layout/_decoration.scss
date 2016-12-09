@@ -354,6 +354,23 @@
 		#workTypeAddForm {
 			display: none;
 			font-size:13px;
+			.configAdd {
+				position: relative;
+				.configAddList {
+					position: absolute;
+					bottom: 20px;
+					width: 500px;
+					right: 0;
+					border:1px solid #ddd;
+					background: #fff;
+					// display: none;
+					h2 {
+						font-size: 13px;
+						margin: 0;
+						padding: 10px;
+					}
+				}
+			}
 		}
 	}	
 }

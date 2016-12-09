@@ -60,7 +60,7 @@
 						<li ng-repeat=" item in data.category.datas" 
 						data-id = "{{item.pid}} - {{item.ddKey}}" class="stretchOff" > 
 						<div ng-click="goodsCateStretch(item.level,  item.hasSubDict, $event, item.ddKey)" >
-						key: {{item.ddKey}}
+						
 							<i class="fa fa-angle-right"
 							 ></i>
 							{{item.ddValue}}
@@ -73,7 +73,7 @@
 							<ul class="subCate" >
 								<li ng-repeat="i in item.subDictList" class="stretchOff" >
 									<div  ng-click="goodsCateStretch(i.level, i.hasSubDict, $event, i.ddKey) ">
-									key: {{i.ddKey}}
+									
 									<i class="fa" 
 									ng-class="{true:'fa-angle-right', false: ''}[i.hasSubDict]"></i>
 									{{i.ddValue}} 
@@ -86,7 +86,7 @@
 									<ul class="subCate" >
 										<li ng-repeat="b in i.subDictList" class="stretchOff">
 											<div ng-click="goodsCateStretch(b.level, b.hasSubDict, $event, b.ddKey) " >
-												key: {{b.ddKey}}
+												
 												<i class="fa "></i>
 												{{b.ddValue}}
 												<p class="operation">

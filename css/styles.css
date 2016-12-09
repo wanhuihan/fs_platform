@@ -400,6 +400,19 @@ a.disabled {
 .ngdialog.workerTypeAdd #workTypeAddForm {
   display: none;
   font-size: 13px; }
+  .ngdialog.workerTypeAdd #workTypeAddForm .configAdd {
+    position: relative; }
+    .ngdialog.workerTypeAdd #workTypeAddForm .configAdd .configAddList {
+      position: absolute;
+      bottom: 20px;
+      width: 500px;
+      right: 0;
+      border: 1px solid #ddd;
+      background: #fff; }
+      .ngdialog.workerTypeAdd #workTypeAddForm .configAdd .configAddList h2 {
+        font-size: 13px;
+        margin: 0;
+        padding: 10px; }
 
 .main .memberSection .quickSearch .control-label {
   padding-top: 7px; }
