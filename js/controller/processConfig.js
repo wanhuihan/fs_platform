@@ -20,7 +20,7 @@ app.controller('process_config', function($scope, $http, $location, getRuleData,
     }
 
     getConfigList();
-    // console.log(getRuleData)
+    console.log(getRuleData)
     $scope.processConfig = {
 
         edit: {
@@ -35,6 +35,8 @@ app.controller('process_config', function($scope, $http, $location, getRuleData,
                 processId: '', 
                 role: '',
                 roleData: getRuleData.data.data.datas,
+                formula: '',
+                seq: '',
                 // craftData: $scope.craftData
             },
 
@@ -64,7 +66,8 @@ app.controller('process_config', function($scope, $http, $location, getRuleData,
                         $scope.processConfig.edit.data.calRegulation = dataGroup.engineeringCalculationRules;
                         $scope.processConfig.edit.data.processId = dataGroup.processConfigurationId;
                         $scope.processConfig.edit.data.role =  dataGroup.roleCode;
-
+                        $scope.processConfig.edit.data.formula =  dataGroup.formula;
+                        $scope.processConfig.edit.data.seq =  dataGroup.seq;
                         // console.log(typeof $scope.processConfig.edit.data.role)
 
                         ngDialog.open({
@@ -114,7 +117,9 @@ app.controller('process_config', function($scope, $http, $location, getRuleData,
                 briefInfo: '',
                 calRegulation: '',
                 role: '',
-                roleData: getRuleData.data.data.datas
+                roleData: getRuleData.data.data.datas,
+                formula: '',
+                seq: '',
             },
 
             save: function(e) { 

@@ -22,27 +22,90 @@
                     <td>单位</td>
                     <td>地区信息价综合日</td>
                     <td>倍率</td>
-                    <td>生命屋标准综合工日(信息价*倍率)</td>
+                    <td>单价(元)</td>
                     <td>区域</td>
                 </tr>
             </thead>
 
             <tbody>
                 <tr ng-repeat="item in workerType">
+
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td> {{item.unit}}</td>
                     <td>
-                        <input ng-focus="calcRate()" type="text" name="add_work_area_{{item.id}}" id="add_work_area_{{item.id}}" 
+                        <input ng-if="item.id!=15 && item.id!=17" ng-focus="calcRate()" type="text" name="add_work_area_{{item.id}}" id="add_work_area_{{item.id}}" 
                          >
                     </td>
 
                     <td>
-                        <input type="text" name="add_rate_{{item.id}}" id="add_rate_{{item.id}}" >
+                        <input type="text" ng-if="item.id!=15 && item.id!=17" name="add_rate_{{item.id}}" id="add_rate_{{item.id}}" >
                     </td>
 
                     <td>
-                        <number id="calcResult_{{item.id}}"></number>
+                        <input type="" name="" ng-if="item.id==15">
+                        <!-- <number id="calcResult_{{item.id}}"></number> -->
+                        
+                        <span ng-if="item.id==17" class="configAdd"> 
+                            <button  class="btn btn-default btn-xs" ng-click="measurePersonConfigShow= !measurePersonConfigShow">添加配置</button>
+                            <div class="configAddList" ng-show="measurePersonConfigShow">
+                                <h2>监理配置</h2>
+                                {{configData}}
+                                <table class="table">
+                                    <tr>
+                                        <th>面积区间(m2)</th>
+                                        <th>单价(元)</th>
+                                        <th>费用计算公式</th>
+                                    </tr>
+                                    <tr ng-repeat="item in configData">
+                                        <td>{{item.area}}</td>
+                                        <td><input type="text" name="" ng-model=
+                                        "item.price"></td>
+                                        <td><input type="text" name="" ng-model=
+                                        "item.formula"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>S≤60＜</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>60 < S ≤ 90</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>90 < S ≤ 120</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>90 < S ≤ 150</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>150< S ≤ 200</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>200< S</td>
+                                        <td><input type="text" name=""></td>
+                                        <td><input type="text" name=""></td>
+                                    </tr>                                                 
+                                    <tr>
+                                        <td colspan="3">
+                                            <button class="btn btn-default">确认</button>
+                                        </td>
+                                    </tr>          
+                                </table>
+                                
+                                
+
+                            </div>
+                        </span>
+                                                
                     </td>
 
                     <td>{{item.area}}</td>

@@ -328,9 +328,31 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
                 // console.log(getCraftData.data.data.datas);
                 $scope.city = getCityData.data.data.datas;
                 // console.log($scope.city);
-                $scope.workerType = getCraftData.data.data.datas;
+                function resetWorkerType(data) {
+       
+                    var newArr = new Array();
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].id != 11 && data[i].id != 12 && data[i].id != 13 && data[i].id != 14 && data[i].id != 16) {
+
+                            newArr.push(data[i]);
+
+                        }                
+                    }
+
+                    return newArr;
+                    // console.log(newArr)
+                }
 
                 $scope.citySelect = function(cityId, cityName) {
+
+                    var newArr = new Array();
+                    // var data = resetWorkerType(getCraftData.data.data.datas);
+
+                    $scope.workerType = resetWorkerType(getCraftData.data.data.datas);
+
+                    // console.log(newArr);
 
                     for (var i = 0; i < $scope.workerType.length; i++) {
                         
@@ -342,17 +364,16 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
                         $scope.workerType[i]['trades'] = $scope.workerType[i]['id'];
 
                     }
+                    // $scope.workerType = resetWorkerType($scope.workerType);
+
+                    console.log(newArr)
+                    // $scope.workerType = newArr;
+
                     document.getElementById("workTypeAddForm").style.display = "block";
                     document.getElementById("citySelect").style.display = "none";
-
                 }   
 
-
-
-
                 $scope.subWorkerTypeAdd = function() {
-
-
 
                     for (var i = 0; i < $scope.workerType.length; i++) { 
                         
@@ -387,13 +408,56 @@ app.controller("craft_fee", function($location, $scope, $http, getCityData, getC
                                 
                                 // console.log(encodeURIComponent(p))  
                             }    
-                            console.log(str);
+                            // console.log(str);
                             return '['+str.join(",")+']';    
                         }                        
                     }).success(function(data) {
-                        console.log(data);
+                        // console.log(data);
                     })
                 } 
+
+                // 
+                $scope.measurePersonConfigShow = false;
+                
+                $scope.configData = {
+                    1: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    },
+                    2: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    },
+                    3: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    },
+                    4: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    }, 
+                    5: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    },
+                    6: {
+                        area: '',
+                        price: '',
+                        formula: ''
+                    }                                       
+                }
+
+                $scope.addConfig = function() {
+
+
+                    // angular.element(document.querySelector(".configAddList")).show()
+                }
+
             }         
         })
 
