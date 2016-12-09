@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container-fluid">
+		
+		<div class="row">
+			<div class="col-md-10 mainSection orderContent">
+				<!-- tab plguin -->
+				<ul id="my-orders-tab" class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active">
+						<a href="#details" id="home-tab" role="tab" data-toggle="tab" aria-controls="details" aria-expanded="true">预约信息</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#report" role="tab" id="report-tab" data-toggle="tab" aria-controls="report" aria-expanded="false">设计文档</a>
+					</li>
+
+					<li role="presentation" class="">
+						<a href="#bill" role="tab" id="bill-tab" data-toggle="tab" aria-controls="bill" aria-expanded="false">合同信息</a>
+					</li>
+
+					<li role="presentation" class="">
+						<a href="#construction" role="tab" id="construction-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">施工计划</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#participation" role="tab" id="participation-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">参与人员</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#task" role="tab" id="task-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">任务信息</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#log" role="tab" id="log-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">工作日志</a>
+					</li>
+					<li role="presentation" class="">
+						<a href="#material" role="tab" id="material-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">物料信息</a>
+					</li>
+
+					<li role="presentation" class="">
+						<a href="#amount" role="tab" id="amount-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false" ng-click="getWorkAmount()" >相关评价</a>
+					</li>										
+				</ul>
+
+				<div id="tableCont" class="tab-content">
+					<div role="tabpanel" class="tab-pane fade active in designDrawingList" id="details" aria-labelledby="details-tab">
+						<!-- design drawings templates -->
+						1
+																									
+					</div>
+
+					<div role="tabpanel" class="tab-pane fade" id="report" aria-labelledby="report-tab">
+						2
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="bill" aria-labelledby="bill-tab">
+						3
+					</div>
+						
+					<div role="tabpanel" class="tab-pane fade" id="drawing" aria-labelledby="drawing-tab">
+						5
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="amount" aria-labelledby="amount-tab" ng-app="designer" ng-controller="designer">
+
+						7
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
