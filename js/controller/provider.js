@@ -47,8 +47,6 @@ app.controller("providerPurchaseOrder", function($scope, $http, $location) {
 
 	}, function(start, end, label) {
 
-		
-		
 		console.log(start.format('YYYY-MM-DD'))	
 	  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
 	});
